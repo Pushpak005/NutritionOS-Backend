@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>NutritionOS - Recommendations</title>
+
+    <link rel="stylesheet"
+          href="/static/css/style.css">
+
+</head>
+
+<body>
+
+<div class="results-container">
+
+    <!-- ===================================== -->
+    <!-- Header -->
+    <!-- ===================================== -->
+
+    <header class="results-header">
+
+        <h1>🥗 NutritionOS Recommendations</h1>
+
+        <p>
+
+            Personalized healthy meals
+            selected according to your goal.
+
+        </p>
+
+    </header>
+
+    <!-- ===================================== -->
+    <!-- Nutrition Summary -->
+    <!-- ===================================== -->
+
+    <section class="nutrition-dashboard">
+
+        <h2>
+
+            📊 Today's Nutrition Summary
+
+        </h2>
+
+        <!-- Protein -->
+
+        <div class="progress-card">
+
+            <div class="progress-header">
+
+                <span>
+
+                    💪 Protein
+
+                </span>
+
+                <span id="proteinText">
+
+                    0 / 50 g
+
+                </span>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    id="proteinProgress"
+                    class="progress-fill">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Calories -->
+
+        <div class="progress-card">
+
+            <div class="progress-header">
+
+                <span>
+
+                    🔥 Calories
+
+                </span>
+
+                <span id="calorieText">
+
+                    0 / 2200 kcal
+
+                </span>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    id="calorieProgress"
+                    class="progress-fill">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Fat -->
+
+        <div class="progress-card">
+
+            <div class="progress-header">
+
+                <span>
+
+                    🥑 Fat
+
+                </span>
+
+                <span id="fatText">
+
+                    0 / 60 g
+
+                </span>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    id="fatProgress"
+                    class="progress-fill">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Fiber -->
+
+        <div class="progress-card">
+
+            <div class="progress-header">
+
+                <span>
+
+                    🌾 Fiber
+
+                </span>
+
+                <span id="fiberText">
+
+                    0 / 30 g
+
+                </span>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    id="fiberProgress"
+                    class="progress-fill">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ===================================== -->
+    <!-- Recommendation Heading -->
+    <!-- ===================================== -->
+
+    <section class="recommendation-title">
+
+        <h2>
+
+            🍽 Recommended Meals
+
+        </h2>
+
+        <p>
+
+            Ranked specially according
+            to your selected goal.
+
+        </p>
+
+    </section>
+
+    <!-- ===================================== -->
+    <!-- Cards injected by JS -->
+    <!-- ===================================== -->
+
+    <div id="results">
+            </div>
+
+    <!-- ===================================== -->
+    <!-- Footer -->
+    <!-- ===================================== -->
+
+    <footer class="results-footer">
+
+        <p>
+
+            🍎 NutritionOS recommends meals based on
+            your selected goal and nutritional values.
+
+        </p>
+
+    </footer>
+
+</div>
+
+<script src="/static/js/results.js"></script>
+
+</body>
+
+</html>

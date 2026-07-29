@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+
+        NutritionOS | Restaurant
+
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/static/css/style.css">
+
+</head>
+
+<body>
+
+<div class="restaurant-container">
+
+    <!-- ========================= -->
+    <!-- Restaurant Header -->
+    <!-- ========================= -->
+
+    <section
+        id="restaurant-info"
+        class="restaurant-header">
+
+        <h1>
+
+            🍽 Loading Restaurant...
+
+        </h1>
+
+        <p>
+
+            Please wait while we load
+            restaurant information.
+
+        </p>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- Search + Filters -->
+    <!-- ========================= -->
+
+    <section class="menu-toolbar">
+
+        <input
+
+            id="searchInput"
+
+            type="text"
+
+            placeholder="🔍 Search dishes..."
+
+        >
+
+
+        <div class="filter-buttons">
+
+            <button id="allBtn">
+
+                🍽 All
+
+            </button>
+
+
+            <button id="vegBtn">
+
+                🟢 Veg
+
+            </button>
+
+
+            <button id="nonVegBtn">
+
+                🔴 Non Veg
+
+            </button>
+
+
+            <button id="proteinBtn">
+
+                💪 High Protein
+
+            </button>
+
+
+            <button id="calorieBtn">
+
+                🔥 Low Calories
+
+            </button>
+
+
+            <button id="priceBtn">
+
+                💰 Lowest Price
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- Menu Title -->
+    <!-- ========================= -->
+
+    <section class="menu-heading">
+
+        <h2>
+
+            🍽 Complete Menu
+
+        </h2>
+
+        <p>
+
+            Explore nutritious meals
+            available at this restaurant.
+
+        </p>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- Menu Cards -->
+    <!-- ========================= -->
+
+    <section
+        id="menu-items"
+        class="menu-grid">
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- Footer Buttons -->
+    <!-- ========================= -->
+
+    <section class="restaurant-footer">
+
+        <button
+
+            class="secondary-btn"
+
+            onclick="window.location.href='/results'">
+
+            ⬅ Back to Recommendations
+
+        </button>
+
+    </section>
+
+</div>
+
+
+<!-- ================================= -->
+<!-- Restaurant ID -->
+<!-- ================================= -->
+
+<script>
+
+const RESTAURANT_ID =
+"{{ restaurant_id }}";
+
+</script>
+
+
+<script src="/static/js/restaurant.js"></script>
+
+</body>
+
+</html>
