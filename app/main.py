@@ -2,13 +2,9 @@ from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-
 from pydantic import BaseModel
-
 from sqlalchemy import text
-
 from app.database import engine
-
 from app.utils.nutrition_score import (
     calculate_score,
     recommendation_reason
@@ -24,14 +20,48 @@ from app.routers.auth import router as auth_router
 from app.routers.users import router as users_router
 from app.routers.recommendations import router as recommendations_router
 from app.routers.meal_logs import router as meal_log_router
+from app.routers.profile import router as profile_router
+from app.routers.nutrition import router as nutrition_router
+from app.routers.restaurants import router as restaurant_router
+from app.routers.meals import router as meals_router
+from app.routers.my_meals import router as my_meals_router
+from app.routers.dashboard import router as dashboard_router
+from app.routers.ai import router as ai_router
+
+
+
+
+
 
 
 app = FastAPI(title="NutritionOS API")
+from fastapi.middleware.cors import CORSMiddleware
+
+
+
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 app.include_router(auth_router)
 app.include_router(users_router)
 app.include_router(recommendations_router)    
 
 app.include_router(meal_log_router)      
+app.include_router(profile_router)
+app.include_router(nutrition_router)
+app.include_router(restaurant_router)
+app.include_router(meals_router)
+app.include_router(my_meals_router)
+app.include_router(dashboard_router)
+app.include_router(ai_router)
 
 
 
