@@ -7,6 +7,9 @@ import math
 
 def calculate_bmi(height_cm: float, weight_kg: float) -> float:
 
+    height_cm = float(height_cm)
+    weight_kg = float(weight_kg)
+
     height_m = height_cm / 100
 
     bmi = weight_kg / (height_m ** 2)
@@ -24,6 +27,9 @@ def calculate_bmr(
     height_cm: float,
     weight_kg: float
 ) -> float:
+
+    height_cm = float(height_cm)
+    weight_kg = float(weight_kg)
 
     gender = gender.lower()
 
@@ -66,6 +72,11 @@ def get_activity_multiplier(activity_level: str):
 
         "active": 1.725,
 
+        "very active": 1.9,
+
+        # Frontend values
+        "lightly active": 1.375,
+        "moderately active": 1.55,
         "very active": 1.9
     }
 
@@ -120,6 +131,9 @@ def calculate_macros(
     calories: int,
     weight_kg: float
 ):
+
+    calories = float(calories)
+    weight_kg = float(weight_kg)
 
     protein = round(weight_kg * 1.8)
 
@@ -183,6 +197,7 @@ def calculate_nutrition(profile: dict):
         calories,
         profile["weight_kg"]
     )
+
     print("===== NUTRITION ENGINE =====")
     print(profile)
     print("BMI:", bmi)
@@ -191,6 +206,7 @@ def calculate_nutrition(profile: dict):
     print("Calories:", calories)
     print(macros)
     print("============================")
+
     return {
 
         "bmi": bmi,
@@ -209,4 +225,3 @@ def calculate_nutrition(profile: dict):
 
         "daily_fiber": macros["fiber"]
     }
- 
