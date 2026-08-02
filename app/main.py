@@ -27,7 +27,8 @@ from app.routers.meals import router as meals_router
 from app.routers.my_meals import router as my_meals_router
 from app.routers.dashboard import router as dashboard_router
 from app.routers.ai import router as ai_router
-
+from app.routers.analytics import router as analytics_router
+from app.routers.score import router as score_router
 
 
 
@@ -45,6 +46,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
+        "https://your-vercel-app.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -62,6 +64,8 @@ app.include_router(meals_router)
 app.include_router(my_meals_router)
 app.include_router(dashboard_router)
 app.include_router(ai_router)
+app.include_router(analytics_router)
+app.include_router(score_router)
 
 
 
