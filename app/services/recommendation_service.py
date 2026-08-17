@@ -50,6 +50,10 @@ def _get_scored_recommendations(user: dict):
         user["core_context"]
     )
 
+    # Make centralized nutrition state available
+    # to the recommendation layer.
+    user["nutrition_state"] = nutrition_state
+
     if not can_recommend_full_meal(
         nutrition_state
     ):
