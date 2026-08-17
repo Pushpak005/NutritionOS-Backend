@@ -1,4 +1,5 @@
 from sqlalchemy import text
+
 from app.database import engine
 
 
@@ -9,64 +10,48 @@ def get_weekly_analytics(user_id: int):
         result = conn.execute(
 
             text("""
-
                 SELECT
 
-                    DATE(
-                        COALESCE(
-                            m.consumed_at,
-                            m.created_at
-                        )
-                    ) AS day,
+                    DATE(ml.eaten_at) AS day,
 
                     SUM(
-                        mi.calories * CAST(m.quantity AS NUMERIC)
+                        ml.calories
                     ) AS calories,
 
                     SUM(
-                        CAST(mi.protein AS NUMERIC) * CAST(m.quantity AS NUMERIC)
+                        ml.protein
                     ) AS protein,
 
                     SUM(
-                        CAST(mi.carbs AS NUMERIC) * CAST(m.quantity AS NUMERIC)
+                        ml.carbs
                     ) AS carbs,
 
                     SUM(
-                        CAST(mi.fat AS NUMERIC) * CAST(m.quantity AS NUMERIC)
+                        ml.fat
                     ) AS fat
 
-                FROM meals m
+                FROM meal_logs ml
 
-                JOIN menu_items mi
+                WHERE
 
-                    ON m.menu_item_id = mi.id
+                    ml.user_id = :user_id
 
-                WHERE m.user_id = :user_id
+                    AND ml.eaten_at >= CURRENT_DATE - INTERVAL '6 days'
+
+                    AND ml.eaten_at < CURRENT_DATE + INTERVAL '1 day'
 
                 GROUP BY
 
-                    DATE(
-                        COALESCE(
-                            m.consumed_at,
-                            m.created_at
-                        )
-                    )
+                    DATE(ml.eaten_at)
 
                 ORDER BY
 
-                    DATE(
-                        COALESCE(
-                            m.consumed_at,
-                            m.created_at
-                        )
-                    ) ASC
+                    DATE(ml.eaten_at) ASC
 
             """),
 
             {
-
                 "user_id": user_id
-
             }
 
         ).fetchall()
@@ -79,13 +64,21 @@ def get_weekly_analytics(user_id: int):
 
             "day": str(row.day),
 
-            "calories": float(row.calories or 0),
+            "calories": float(
+                row.calories or 0
+            ),
 
-            "protein": float(row.protein or 0),
+            "protein": float(
+                row.protein or 0
+            ),
 
-            "carbs": float(row.carbs or 0),
+            "carbs": float(
+                row.carbs or 0
+            ),
 
-            "fat": float(row.fat or 0)
+            "fat": float(
+                row.fat or 0
+            )
 
         })
 

@@ -7,10 +7,13 @@ def calculate_score(user_id: int):
 
     with engine.connect() as conn:
 
+        # ==========================================
+        # User Nutrition Targets
+        # ==========================================
+
         profile = conn.execute(
 
             text("""
-
                 SELECT
 
                     daily_calories,
@@ -19,70 +22,155 @@ def calculate_score(user_id: int):
 
                 FROM users
 
-                WHERE id=:id
-
+                WHERE id = :id
             """),
 
             {
-
                 "id": user_id
+            }
+
+        ).mappings().first()
+
+        if not profile:
+
+            return {
+
+                "score": 0,
+
+                "calories": 0,
+
+                "protein": 0
 
             }
 
-        ).fetchone()
+        # ==========================================
+        # Today's Nutrition
+        # Source: meal_logs
+        # ==========================================
 
         totals = conn.execute(
 
             text("""
-
                 SELECT
 
-                    COALESCE(SUM(mi.calories * CAST(m.quantity AS NUMERIC)),0) calories,
+                    COALESCE(
+                        SUM(calories),
+                        0
+                    ) AS calories,
 
-                    COALESCE(SUM(CAST(mi.protein AS NUMERIC) * CAST(m.quantity AS NUMERIC)),0) protein
+                    COALESCE(
+                        SUM(protein),
+                        0
+                    ) AS protein
 
-                FROM meals m
+                FROM meal_logs
 
-                JOIN menu_items mi
+                WHERE
 
-                ON m.menu_item_id = mi.id
+                    user_id = :id
 
-                WHERE m.user_id=:id
+                    AND DATE(eaten_at) = CURRENT_DATE
 
             """),
 
             {
-
                 "id": user_id
-
             }
 
-        ).fetchone()
+        ).mappings().first()
+
+    # ==========================================
+    # Safe Numeric Values
+    # ==========================================
+
+    daily_calories = float(
+        profile["daily_calories"] or 0
+    )
+
+    daily_protein = float(
+        profile["daily_protein"] or 0
+    )
+
+    consumed_calories = float(
+        totals["calories"] or 0
+    )
+
+    consumed_protein = float(
+        totals["protein"] or 0
+    )
+
+    # ==========================================
+    # Nutrition Score
+    # ==========================================
 
     score = 0
 
-    if totals.calories <= profile.daily_calories:
+    # ------------------------------------------
+    # Calories within daily target
+    # ------------------------------------------
+
+    if (
+
+        daily_calories > 0
+
+        and
+
+        consumed_calories <= daily_calories
+
+    ):
 
         score += 40
 
-    if totals.protein >= profile.daily_protein * 0.8:
+    # ------------------------------------------
+    # Protein target progress
+    # ------------------------------------------
+
+    if (
+
+        daily_protein > 0
+
+        and
+
+        consumed_protein >= daily_protein * 0.8
+
+    ):
 
         score += 30
 
-    if totals.calories >= profile.daily_calories * 0.6:
+    # ------------------------------------------
+    # At least 60% of calorie target consumed
+    # ------------------------------------------
+
+    if (
+
+        daily_calories > 0
+
+        and
+
+        consumed_calories >= daily_calories * 0.6
+
+    ):
 
         score += 20
 
-    if totals.protein > 0:
+    # ------------------------------------------
+    # Any protein consumed
+    # ------------------------------------------
+
+    if consumed_protein > 0:
 
         score += 10
+
+    # ==========================================
+    # Response
+    # ==========================================
 
     return {
 
         "score": score,
 
-        "calories": float(totals.calories),
+        "calories": consumed_calories,
 
-        "protein": float(totals.protein)
+        "protein": consumed_protein
 
     }

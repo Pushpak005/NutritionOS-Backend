@@ -3,14 +3,25 @@ from sqlalchemy import text
 
 from app.database import engine
 from app.utils.auth_dependency import get_current_user
-from app.services.recommendation_engine import calculate_nutrition_score
-from app.services.meal_engine import get_meal_target_calories
+
+from app.services.recommendation_engine import (
+    calculate_nutrition_score
+)
+
+from app.services.meal_engine import (
+    get_meal_target_calories
+)
+
 
 router = APIRouter(
     prefix="/recommendations",
     tags=["Recommendations"]
 )
 
+
+# ==========================================================
+# Recommendation List
+# ==========================================================
 
 @router.get("/")
 def get_recommendations(
@@ -23,7 +34,13 @@ def get_recommendations(
 
     meal = meal.capitalize()
 
-    if meal not in ["Breakfast", "Lunch", "Dinner", "Snack"]:
+    if meal not in [
+        "Breakfast",
+        "Lunch",
+        "Dinner",
+        "Snack"
+    ]:
+
         raise HTTPException(
             status_code=400,
             detail="Meal must be Breakfast, Lunch, Dinner or Snack."
@@ -31,44 +48,169 @@ def get_recommendations(
 
     with engine.connect() as conn:
 
-        # -----------------------
+        # ==================================================
         # Logged In User
-        # -----------------------
+        # ==================================================
 
         user = conn.execute(
+
             text("""
                 SELECT *
+
                 FROM users
+
                 WHERE id = :id
             """),
+
             {
                 "id": current_user["user_id"]
             }
+
         ).mappings().first()
 
         if not user:
+
             raise HTTPException(
                 status_code=404,
                 detail="User not found."
             )
 
-        # -----------------------
+        user = dict(user)
+
+        # ==================================================
+        # Today's Nutrition
+        # ==================================================
+
+        totals = conn.execute(
+
+            text("""
+                SELECT
+
+                    COALESCE(
+                        SUM(calories),
+                        0
+                    ) AS calories,
+
+                    COALESCE(
+                        SUM(protein),
+                        0
+                    ) AS protein,
+
+                    COALESCE(
+                        SUM(carbs),
+                        0
+                    ) AS carbs,
+
+                    COALESCE(
+                        SUM(fat),
+                        0
+                    ) AS fat,
+
+                    COALESCE(
+                        SUM(fiber),
+                        0
+                    ) AS fiber,
+
+                    COUNT(*) AS meals_logged
+
+                FROM meal_logs
+
+                WHERE
+
+                    user_id = :user_id
+
+                    AND DATE(eaten_at) = CURRENT_DATE
+            """),
+
+            {
+                "user_id": current_user["user_id"]
+            }
+
+        ).mappings().first()
+
+        totals = dict(totals)
+
+        # ==================================================
+        # Remaining Nutrition
+        # ==================================================
+
+        remaining = {
+
+            "calories": max(
+
+                (user["daily_calories"] or 0)
+                - float(totals["calories"] or 0),
+
+                0
+
+            ),
+
+            "protein": max(
+
+                (user["daily_protein"] or 0)
+                - float(totals["protein"] or 0),
+
+                0
+
+            ),
+
+            "carbs": max(
+
+                (user["daily_carbs"] or 0)
+                - float(totals["carbs"] or 0),
+
+                0
+
+            ),
+
+            "fat": max(
+
+                (user["daily_fat"] or 0)
+                - float(totals["fat"] or 0),
+
+                0
+
+            ),
+
+            "fiber": max(
+
+                (user["daily_fiber"] or 0)
+                - float(totals["fiber"] or 0),
+
+                0
+
+            )
+
+        }
+
+        # ==================================================
+        # Recommendation Context
+        # ==================================================
+
+        user["consumed"] = totals
+
+        user["remaining"] = remaining
+
+        # ==================================================
         # Meal Target Calories
-        # -----------------------
+        # ==================================================
 
         meal_target = get_meal_target_calories(
+
             user["daily_calories"],
+
             meal
+
         )
 
-        user = dict(user)
         user["meal_target_calories"] = meal_target
 
-        # -----------------------
+        # ==================================================
         # Menu + Restaurant
-        # -----------------------
+        # ==================================================
 
         dishes = conn.execute(
+
             text("""
                 SELECT
 
@@ -85,7 +227,8 @@ def get_recommendations(
                     m.price,
                     m.is_veg,
                     m.available,
-                    m.image_url,
+                    m.image_key,
+                    m.healthy_score,
 
                     r.restaurant_name,
                     r.area,
@@ -98,36 +241,56 @@ def get_recommendations(
                     ON m.restaurant_id = r.restaurant_id
 
                 WHERE
+
                     m.available = TRUE
+
                     AND m.meal_type = :meal
             """),
+
             {
                 "meal": meal
             }
+
         ).mappings().all()
 
     recommendations = []
 
+    # ======================================================
+    # Score Every Dish
+    # ======================================================
+
     for dish in dishes:
 
-        # -----------------------
+        # --------------------------------------------------
         # Veg Filter
-        # -----------------------
+        # --------------------------------------------------
 
         if (
+
             user.get("diet_preferences")
-            and user["diet_preferences"].lower() == "veg"
-            and not dish["is_veg"]
+
+            and
+
+            user["diet_preferences"].lower() == "veg"
+
+            and
+
+            not dish["is_veg"]
+
         ):
+
             continue
 
-        # -----------------------
+        # --------------------------------------------------
         # Nutrition Score
-        # -----------------------
+        # --------------------------------------------------
 
         score = calculate_nutrition_score(
+
             user,
+
             dish
+
         )
 
         recommendations.append({
@@ -142,7 +305,9 @@ def get_recommendations(
 
             "area": dish["area"],
 
-            "rating": float(dish["rating"] or 0),
+            "rating": float(
+                dish["rating"] or 0
+            ),
 
             "delivery_time": dish["delivery_time"],
 
@@ -150,31 +315,46 @@ def get_recommendations(
 
             "calories": dish["calories"],
 
-            "protein": float(dish["protein"] or 0),
+            "protein": float(
+                dish["protein"] or 0
+            ),
 
-            "carbs": float(dish["carbs"] or 0),
+            "carbs": float(
+                dish["carbs"] or 0
+            ),
 
-            "fat": float(dish["fat"] or 0),
+            "fat": float(
+                dish["fat"] or 0
+            ),
 
-            "fiber": float(dish["fiber"] or 0),
+            "fiber": float(
+                dish["fiber"] or 0
+            ),
 
-            "price": float(dish["price"] or 0),
+            "price": float(
+                dish["price"] or 0
+            ),
 
             "is_veg": dish["is_veg"],
 
-            "image_url": dish["image_url"],
+            "healthy_score": dish["healthy_score"],
+
+            "image_key": dish["image_key"],
 
             "score": score
 
         })
-    
-    # -----------------------
+
+    # ======================================================
     # Highest Score First
-    # -----------------------
+    # ======================================================
 
     recommendations.sort(
+
         key=lambda x: x["score"],
+
         reverse=True
+
     )
 
     return {
@@ -183,13 +363,23 @@ def get_recommendations(
 
         "meal": meal,
 
-        "target_calories": round(meal_target),
+        "target_calories": round(
+            meal_target
+        ),
 
-        "total_recommendations": len(recommendations),
+        "consumed": totals,
+
+        "remaining": remaining,
+
+        "total_recommendations": len(
+            recommendations
+        ),
 
         "recommendations": recommendations[:10]
 
     }
+
+
 # ==========================================================
 # Recommendation Details
 # ==========================================================
@@ -202,7 +392,12 @@ def get_recommendation_details(
 
     with engine.connect() as conn:
 
+        # ==================================================
+        # Dish
+        # ==================================================
+
         dish = conn.execute(
+
             text("""
                 SELECT
 
@@ -219,7 +414,8 @@ def get_recommendation_details(
                     m.price,
                     m.is_veg,
                     m.available,
-                    m.image_url,
+                    m.image_key,
+                    m.healthy_score,
 
                     r.restaurant_name,
                     r.area,
@@ -232,39 +428,266 @@ def get_recommendation_details(
                     ON m.restaurant_id = r.restaurant_id
 
                 WHERE
+
                     m.id = :dish_id
             """),
+
             {
                 "dish_id": dish_id
             }
+
         ).mappings().first()
 
-    if not dish:
-        raise HTTPException(
-            status_code=404,
-            detail="Dish not found."
-        )
+        if not dish:
 
-    # ----------------------------------
-    # Recommendation Explanation
-    # ----------------------------------
+            raise HTTPException(
+                status_code=404,
+                detail="Dish not found."
+            )
 
-    why_recommended = []
+        # ==================================================
+        # User Profile
+        # ==================================================
 
-    if dish["protein"] and dish["protein"] >= 25:
-        why_recommended.append("Excellent source of protein.")
+        user = conn.execute(
 
-    if dish["calories"] and dish["calories"] <= 700:
-        why_recommended.append("Fits your meal calorie target.")
+            text("""
+                SELECT
 
-    if dish["price"] and dish["price"] <= 250:
-        why_recommended.append("Budget friendly meal.")
+                    id,
+                    goal,
+                    daily_calories,
+                    daily_protein,
+                    daily_carbs,
+                    daily_fat,
+                    daily_fiber,
+                    daily_budget,
+                    diet_preferences
 
-    if dish["is_veg"]:
-        why_recommended.append("Suitable for vegetarian diet.")
+                FROM users
 
-    if dish["rating"] and float(dish["rating"]) >= 4.5:
-        why_recommended.append("Highly rated restaurant.")
+                WHERE id = :user_id
+            """),
+
+            {
+                "user_id": current_user["user_id"]
+            }
+
+        ).mappings().first()
+
+        if not user:
+
+            raise HTTPException(
+                status_code=404,
+                detail="User not found."
+            )
+
+        # ==================================================
+        # Today's Nutrition
+        # ==================================================
+
+        totals = conn.execute(
+
+            text("""
+                SELECT
+
+                    COALESCE(
+                        SUM(calories),
+                        0
+                    ) AS calories,
+
+                    COALESCE(
+                        SUM(protein),
+                        0
+                    ) AS protein,
+
+                    COALESCE(
+                        SUM(carbs),
+                        0
+                    ) AS carbs,
+
+                    COALESCE(
+                        SUM(fat),
+                        0
+                    ) AS fat,
+
+                    COALESCE(
+                        SUM(fiber),
+                        0
+                    ) AS fiber
+
+                FROM meal_logs
+
+                WHERE
+
+                    user_id = :user_id
+
+                    AND DATE(eaten_at) = CURRENT_DATE
+            """),
+
+            {
+                "user_id": current_user["user_id"]
+            }
+
+        ).mappings().first()
+
+        totals = dict(totals)
+
+        # ==================================================
+        # Remaining Nutrition
+        # ==================================================
+
+        remaining = {
+
+            "calories": max(
+
+                (user["daily_calories"] or 0)
+                - float(totals["calories"] or 0),
+
+                0
+
+            ),
+
+            "protein": max(
+
+                (user["daily_protein"] or 0)
+                - float(totals["protein"] or 0),
+
+                0
+
+            ),
+
+            "carbs": max(
+
+                (user["daily_carbs"] or 0)
+                - float(totals["carbs"] or 0),
+
+                0
+
+            ),
+
+            "fat": max(
+
+                (user["daily_fat"] or 0)
+                - float(totals["fat"] or 0),
+
+                0
+
+            ),
+
+            "fiber": max(
+
+                (user["daily_fiber"] or 0)
+                - float(totals["fiber"] or 0),
+
+                0
+
+            )
+
+        }
+
+        # ==================================================
+        # Dynamic Recommendation Reasons
+        # ==================================================
+
+        why_recommended = []
+
+        if (
+
+            dish["protein"]
+
+            and
+
+            float(dish["protein"]) >= 25
+
+        ):
+
+            why_recommended.append(
+                "Excellent source of protein."
+            )
+
+        if (
+
+            remaining["protein"] > 0
+
+            and
+
+            dish["protein"]
+
+            and
+
+            float(dish["protein"])
+            <= remaining["protein"]
+
+        ):
+
+            why_recommended.append(
+                "Helps cover your remaining protein target."
+            )
+
+        if (
+
+            remaining["calories"] > 0
+
+            and
+
+            dish["calories"]
+
+            and
+
+            float(dish["calories"])
+            <= remaining["calories"]
+
+        ):
+
+            why_recommended.append(
+                "Fits within your remaining calorie budget."
+            )
+
+        if (
+
+            dish["price"]
+
+            and
+
+            user["daily_budget"]
+
+            and
+
+            float(dish["price"])
+            <= float(user["daily_budget"])
+
+        ):
+
+            why_recommended.append(
+                "Fits within your daily food budget."
+            )
+
+        if dish["is_veg"]:
+
+            why_recommended.append(
+                "Suitable for vegetarian diet."
+            )
+
+        if (
+
+            dish["rating"]
+
+            and
+
+            float(dish["rating"]) >= 4.5
+
+        ):
+
+            why_recommended.append(
+                "Highly rated restaurant."
+            )
+
+        if not why_recommended:
+
+            why_recommended.append(
+                "Selected based on your current nutrition profile."
+            )
 
     return {
 
@@ -284,25 +707,39 @@ def get_recommendation_details(
 
             "area": dish["area"],
 
-            "rating": float(dish["rating"] or 0),
+            "rating": float(
+                dish["rating"] or 0
+            ),
 
             "delivery_time": dish["delivery_time"],
 
             "calories": dish["calories"],
 
-            "protein": float(dish["protein"] or 0),
+            "protein": float(
+                dish["protein"] or 0
+            ),
 
-            "carbs": float(dish["carbs"] or 0),
+            "carbs": float(
+                dish["carbs"] or 0
+            ),
 
-            "fat": float(dish["fat"] or 0),
+            "fat": float(
+                dish["fat"] or 0
+            ),
 
-            "fiber": float(dish["fiber"] or 0),
+            "fiber": float(
+                dish["fiber"] or 0
+            ),
 
-            "price": float(dish["price"] or 0),
+            "price": float(
+                dish["price"] or 0
+            ),
 
             "is_veg": dish["is_veg"],
 
-            "image_url": dish["image_url"]
+            "healthy_score": dish["healthy_score"],
+
+            "image_key": dish["image_key"]
 
         },
 

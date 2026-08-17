@@ -1,0 +1,501 @@
+restaurant_id,dish_name,description,category,meal_type,cuisine,calories,protein,carbs,fat,fiber,price,is_veg,image_url,ingredients,allergens,healthy_score,popularity_score,prep_time,spice_level,available
+1,Grilled Chicken Power Bowl 1,Healthy chef special #1,Bowl,Breakfast,Healthy Indian,350,22,25,8,4,179,false,,Fresh ingredients,,85,80,10,None,true
+2,High Protein Paneer Bowl 2,Healthy chef special #2,Bowl,Lunch,Continental,357,25,30,10,5,199,true,,Fresh ingredients,Milk,86,81,15,Mild,true
+3,Egg White Wrap 3,Healthy chef special #3,Wrap,Dinner,Mediterranean,364,28,35,12,6,219,false,,Fresh ingredients,,87,82,20,Medium,true
+4,Chicken Burrito Bowl 4,Healthy chef special #4,Bowl,Breakfast,Mexican,371,31,40,14,7,249,false,,Fresh ingredients,,88,83,25,None,true
+5,Protein Oats 5,Healthy chef special #5,Meal,Lunch,Healthy Indian,378,34,45,16,8,269,true,,Fresh ingredients,,89,84,10,Mild,true
+6,Greek Yogurt Parfait 6,Healthy chef special #6,Meal,Dinner,Continental,385,37,50,18,9,289,true,,Fresh ingredients,Milk,90,85,15,Medium,true
+7,Chicken Caesar Salad 7,Healthy chef special #7,Meal,Breakfast,Mediterranean,392,40,55,20,10,299,false,,Fresh ingredients,,91,86,20,None,true
+8,Peri Peri Chicken Bowl 8,Healthy chef special #8,Bowl,Lunch,Mexican,399,43,60,22,11,329,false,,Fresh ingredients,,92,87,25,Mild,true
+9,Muscle Gain Rice Bowl 9,Healthy chef special #9,Bowl,Dinner,Healthy Indian,406,46,65,24,4,179,false,,Fresh ingredients,,93,88,10,Medium,true
+10,Tofu Power Bowl 10,Healthy chef special #10,Bowl,Breakfast,Continental,413,49,25,8,5,199,true,,Fresh ingredients,,94,89,15,None,true
+11,Chicken Quinoa Bowl 11,Healthy chef special #11,Bowl,Lunch,Mediterranean,420,22,30,10,6,219,false,,Fresh ingredients,,95,90,20,Mild,true
+12,BBQ Chicken Bowl 12,Healthy chef special #12,Bowl,Dinner,Mexican,427,25,35,12,7,249,false,,Fresh ingredients,,96,91,25,Medium,true
+13,Paneer Protein Plate 13,Healthy chef special #13,Meal,Breakfast,Healthy Indian,434,28,40,14,8,269,true,,Fresh ingredients,Milk,97,92,10,None,true
+14,Turkey Wrap 14,Healthy chef special #14,Wrap,Lunch,Continental,441,31,45,16,9,289,false,,Fresh ingredients,,98,93,15,Mild,true
+15,Avocado Chicken Bowl 15,Healthy chef special #15,Bowl,Dinner,Mediterranean,448,34,50,18,10,299,false,,Fresh ingredients,,99,94,20,Medium,true
+1,Salmon Power Bowl 16,Healthy chef special #16,Bowl,Breakfast,Mexican,455,37,55,20,11,329,false,,Fresh ingredients,,85,95,25,None,true
+2,Lean Beef Bowl 17,Healthy chef special #17,Bowl,Lunch,Healthy Indian,462,40,60,22,4,179,false,,Fresh ingredients,,86,96,10,Mild,true
+3,Moong Protein Bowl 18,Healthy chef special #18,Bowl,Dinner,Continental,469,43,65,24,5,199,true,,Fresh ingredients,,87,97,15,Medium,true
+4,Protein Pancakes 19,Healthy chef special #19,Meal,Breakfast,Mediterranean,476,46,25,8,6,219,true,,Fresh ingredients,,88,98,20,None,true
+5,Chicken Tikka Bowl 20,Healthy chef special #20,Bowl,Lunch,Mexican,483,49,30,10,7,249,false,,Fresh ingredients,,89,99,25,Mild,true
+6,Grilled Chicken Power Bowl 21,Healthy chef special #21,Bowl,Dinner,Healthy Indian,490,22,35,12,8,269,false,,Fresh ingredients,,90,80,10,Medium,true
+7,High Protein Paneer Bowl 22,Healthy chef special #22,Bowl,Breakfast,Continental,497,25,40,14,9,289,true,,Fresh ingredients,Milk,91,81,15,None,true
+8,Egg White Wrap 23,Healthy chef special #23,Wrap,Lunch,Mediterranean,504,28,45,16,10,299,false,,Fresh ingredients,,92,82,20,Mild,true
+9,Chicken Burrito Bowl 24,Healthy chef special #24,Bowl,Dinner,Mexican,511,31,50,18,11,329,false,,Fresh ingredients,,93,83,25,Medium,true
+10,Protein Oats 25,Healthy chef special #25,Meal,Breakfast,Healthy Indian,518,34,55,20,4,179,true,,Fresh ingredients,,94,84,10,None,true
+11,Greek Yogurt Parfait 26,Healthy chef special #26,Meal,Lunch,Continental,525,37,60,22,5,199,true,,Fresh ingredients,Milk,95,85,15,Mild,true
+12,Chicken Caesar Salad 27,Healthy chef special #27,Meal,Dinner,Mediterranean,532,40,65,24,6,219,false,,Fresh ingredients,,96,86,20,Medium,true
+13,Peri Peri Chicken Bowl 28,Healthy chef special #28,Bowl,Breakfast,Mexican,539,43,25,8,7,249,false,,Fresh ingredients,,97,87,25,None,true
+14,Muscle Gain Rice Bowl 29,Healthy chef special #29,Bowl,Lunch,Healthy Indian,546,46,30,10,8,269,false,,Fresh ingredients,,98,88,10,Mild,true
+15,Tofu Power Bowl 30,Healthy chef special #30,Bowl,Dinner,Continental,553,49,35,12,9,289,true,,Fresh ingredients,,99,89,15,Medium,true
+1,Chicken Quinoa Bowl 31,Healthy chef special #31,Bowl,Breakfast,Mediterranean,560,22,40,14,10,299,false,,Fresh ingredients,,85,90,20,None,true
+2,BBQ Chicken Bowl 32,Healthy chef special #32,Bowl,Lunch,Mexican,567,25,45,16,11,329,false,,Fresh ingredients,,86,91,25,Mild,true
+3,Paneer Protein Plate 33,Healthy chef special #33,Meal,Dinner,Healthy Indian,574,28,50,18,4,179,true,,Fresh ingredients,Milk,87,92,10,Medium,true
+4,Turkey Wrap 34,Healthy chef special #34,Wrap,Breakfast,Continental,581,31,55,20,5,199,false,,Fresh ingredients,,88,93,15,None,true
+5,Avocado Chicken Bowl 35,Healthy chef special #35,Bowl,Lunch,Mediterranean,588,34,60,22,6,219,false,,Fresh ingredients,,89,94,20,Mild,true
+6,Salmon Power Bowl 36,Healthy chef special #36,Bowl,Dinner,Mexican,595,37,65,24,7,249,false,,Fresh ingredients,,90,95,25,Medium,true
+7,Lean Beef Bowl 37,Healthy chef special #37,Bowl,Breakfast,Healthy Indian,602,40,25,8,8,269,false,,Fresh ingredients,,91,96,10,None,true
+8,Moong Protein Bowl 38,Healthy chef special #38,Bowl,Lunch,Continental,609,43,30,10,9,289,true,,Fresh ingredients,,92,97,15,Mild,true
+9,Protein Pancakes 39,Healthy chef special #39,Meal,Dinner,Mediterranean,616,46,35,12,10,299,true,,Fresh ingredients,,93,98,20,Medium,true
+10,Chicken Tikka Bowl 40,Healthy chef special #40,Bowl,Breakfast,Mexican,623,49,40,14,11,329,false,,Fresh ingredients,,94,99,25,None,true
+11,Grilled Chicken Power Bowl 41,Healthy chef special #41,Bowl,Lunch,Healthy Indian,630,22,45,16,4,179,false,,Fresh ingredients,,95,80,10,Mild,true
+12,High Protein Paneer Bowl 42,Healthy chef special #42,Bowl,Dinner,Continental,637,25,50,18,5,199,true,,Fresh ingredients,Milk,96,81,15,Medium,true
+13,Egg White Wrap 43,Healthy chef special #43,Wrap,Breakfast,Mediterranean,644,28,55,20,6,219,false,,Fresh ingredients,,97,82,20,None,true
+14,Chicken Burrito Bowl 44,Healthy chef special #44,Bowl,Lunch,Mexican,651,31,60,22,7,249,false,,Fresh ingredients,,98,83,25,Mild,true
+15,Protein Oats 45,Healthy chef special #45,Meal,Dinner,Healthy Indian,658,34,65,24,8,269,true,,Fresh ingredients,,99,84,10,Medium,true
+1,Greek Yogurt Parfait 46,Healthy chef special #46,Meal,Breakfast,Continental,665,37,25,8,9,289,true,,Fresh ingredients,Milk,85,85,15,None,true
+2,Chicken Caesar Salad 47,Healthy chef special #47,Meal,Lunch,Mediterranean,352,40,30,10,10,299,false,,Fresh ingredients,,86,86,20,Mild,true
+3,Peri Peri Chicken Bowl 48,Healthy chef special #48,Bowl,Dinner,Mexican,359,43,35,12,11,329,false,,Fresh ingredients,,87,87,25,Medium,true
+4,Muscle Gain Rice Bowl 49,Healthy chef special #49,Bowl,Breakfast,Healthy Indian,366,46,40,14,4,179,false,,Fresh ingredients,,88,88,10,None,true
+5,Tofu Power Bowl 50,Healthy chef special #50,Bowl,Lunch,Continental,373,49,45,16,5,199,true,,Fresh ingredients,,89,89,15,Mild,true
+6,Chicken Quinoa Bowl 51,Healthy chef special #51,Bowl,Dinner,Mediterranean,380,22,50,18,6,219,false,,Fresh ingredients,,90,90,20,Medium,true
+7,BBQ Chicken Bowl 52,Healthy chef special #52,Bowl,Breakfast,Mexican,387,25,55,20,7,249,false,,Fresh ingredients,,91,91,25,None,true
+8,Paneer Protein Plate 53,Healthy chef special #53,Meal,Lunch,Healthy Indian,394,28,60,22,8,269,true,,Fresh ingredients,Milk,92,92,10,Mild,true
+9,Turkey Wrap 54,Healthy chef special #54,Wrap,Dinner,Continental,401,31,65,24,9,289,false,,Fresh ingredients,,93,93,15,Medium,true
+10,Avocado Chicken Bowl 55,Healthy chef special #55,Bowl,Breakfast,Mediterranean,408,34,25,8,10,299,false,,Fresh ingredients,,94,94,20,None,true
+11,Salmon Power Bowl 56,Healthy chef special #56,Bowl,Lunch,Mexican,415,37,30,10,11,329,false,,Fresh ingredients,,95,95,25,Mild,true
+12,Lean Beef Bowl 57,Healthy chef special #57,Bowl,Dinner,Healthy Indian,422,40,35,12,4,179,false,,Fresh ingredients,,96,96,10,Medium,true
+13,Moong Protein Bowl 58,Healthy chef special #58,Bowl,Breakfast,Continental,429,43,40,14,5,199,true,,Fresh ingredients,,97,97,15,None,true
+14,Protein Pancakes 59,Healthy chef special #59,Meal,Lunch,Mediterranean,436,46,45,16,6,219,true,,Fresh ingredients,,98,98,20,Mild,true
+15,Chicken Tikka Bowl 60,Healthy chef special #60,Bowl,Dinner,Mexican,443,49,50,18,7,249,false,,Fresh ingredients,,99,99,25,Medium,true
+1,Grilled Chicken Power Bowl 61,Healthy chef special #61,Bowl,Breakfast,Healthy Indian,450,22,55,20,8,269,false,,Fresh ingredients,,85,80,10,None,true
+2,High Protein Paneer Bowl 62,Healthy chef special #62,Bowl,Lunch,Continental,457,25,60,22,9,289,true,,Fresh ingredients,Milk,86,81,15,Mild,true
+3,Egg White Wrap 63,Healthy chef special #63,Wrap,Dinner,Mediterranean,464,28,65,24,10,299,false,,Fresh ingredients,,87,82,20,Medium,true
+4,Chicken Burrito Bowl 64,Healthy chef special #64,Bowl,Breakfast,Mexican,471,31,25,8,11,329,false,,Fresh ingredients,,88,83,25,None,true
+5,Protein Oats 65,Healthy chef special #65,Meal,Lunch,Healthy Indian,478,34,30,10,4,179,true,,Fresh ingredients,,89,84,10,Mild,true
+6,Greek Yogurt Parfait 66,Healthy chef special #66,Meal,Dinner,Continental,485,37,35,12,5,199,true,,Fresh ingredients,Milk,90,85,15,Medium,true
+7,Chicken Caesar Salad 67,Healthy chef special #67,Meal,Breakfast,Mediterranean,492,40,40,14,6,219,false,,Fresh ingredients,,91,86,20,None,true
+8,Peri Peri Chicken Bowl 68,Healthy chef special #68,Bowl,Lunch,Mexican,499,43,45,16,7,249,false,,Fresh ingredients,,92,87,25,Mild,true
+9,Muscle Gain Rice Bowl 69,Healthy chef special #69,Bowl,Dinner,Healthy Indian,506,46,50,18,8,269,false,,Fresh ingredients,,93,88,10,Medium,true
+10,Tofu Power Bowl 70,Healthy chef special #70,Bowl,Breakfast,Continental,513,49,55,20,9,289,true,,Fresh ingredients,,94,89,15,None,true
+11,Chicken Quinoa Bowl 71,Healthy chef special #71,Bowl,Lunch,Mediterranean,520,22,60,22,10,299,false,,Fresh ingredients,,95,90,20,Mild,true
+12,BBQ Chicken Bowl 72,Healthy chef special #72,Bowl,Dinner,Mexican,527,25,65,24,11,329,false,,Fresh ingredients,,96,91,25,Medium,true
+13,Paneer Protein Plate 73,Healthy chef special #73,Meal,Breakfast,Healthy Indian,534,28,25,8,4,179,true,,Fresh ingredients,Milk,97,92,10,None,true
+14,Turkey Wrap 74,Healthy chef special #74,Wrap,Lunch,Continental,541,31,30,10,5,199,false,,Fresh ingredients,,98,93,15,Mild,true
+15,Avocado Chicken Bowl 75,Healthy chef special #75,Bowl,Dinner,Mediterranean,548,34,35,12,6,219,false,,Fresh ingredients,,99,94,20,Medium,true
+1,Salmon Power Bowl 76,Healthy chef special #76,Bowl,Breakfast,Mexican,555,37,40,14,7,249,false,,Fresh ingredients,,85,95,25,None,true
+2,Lean Beef Bowl 77,Healthy chef special #77,Bowl,Lunch,Healthy Indian,562,40,45,16,8,269,false,,Fresh ingredients,,86,96,10,Mild,true
+3,Moong Protein Bowl 78,Healthy chef special #78,Bowl,Dinner,Continental,569,43,50,18,9,289,true,,Fresh ingredients,,87,97,15,Medium,true
+4,Protein Pancakes 79,Healthy chef special #79,Meal,Breakfast,Mediterranean,576,46,55,20,10,299,true,,Fresh ingredients,,88,98,20,None,true
+5,Chicken Tikka Bowl 80,Healthy chef special #80,Bowl,Lunch,Mexican,583,49,60,22,11,329,false,,Fresh ingredients,,89,99,25,Mild,true
+6,Grilled Chicken Power Bowl 81,Healthy chef special #81,Bowl,Dinner,Healthy Indian,590,22,65,24,4,179,false,,Fresh ingredients,,90,80,10,Medium,true
+7,High Protein Paneer Bowl 82,Healthy chef special #82,Bowl,Breakfast,Continental,597,25,25,8,5,199,true,,Fresh ingredients,Milk,91,81,15,None,true
+8,Egg White Wrap 83,Healthy chef special #83,Wrap,Lunch,Mediterranean,604,28,30,10,6,219,false,,Fresh ingredients,,92,82,20,Mild,true
+9,Chicken Burrito Bowl 84,Healthy chef special #84,Bowl,Dinner,Mexican,611,31,35,12,7,249,false,,Fresh ingredients,,93,83,25,Medium,true
+10,Protein Oats 85,Healthy chef special #85,Meal,Breakfast,Healthy Indian,618,34,40,14,8,269,true,,Fresh ingredients,,94,84,10,None,true
+11,Greek Yogurt Parfait 86,Healthy chef special #86,Meal,Lunch,Continental,625,37,45,16,9,289,true,,Fresh ingredients,Milk,95,85,15,Mild,true
+12,Chicken Caesar Salad 87,Healthy chef special #87,Meal,Dinner,Mediterranean,632,40,50,18,10,299,false,,Fresh ingredients,,96,86,20,Medium,true
+13,Peri Peri Chicken Bowl 88,Healthy chef special #88,Bowl,Breakfast,Mexican,639,43,55,20,11,329,false,,Fresh ingredients,,97,87,25,None,true
+14,Muscle Gain Rice Bowl 89,Healthy chef special #89,Bowl,Lunch,Healthy Indian,646,46,60,22,4,179,false,,Fresh ingredients,,98,88,10,Mild,true
+15,Tofu Power Bowl 90,Healthy chef special #90,Bowl,Dinner,Continental,653,49,65,24,5,199,true,,Fresh ingredients,,99,89,15,Medium,true
+1,Chicken Quinoa Bowl 91,Healthy chef special #91,Bowl,Breakfast,Mediterranean,660,22,25,8,6,219,false,,Fresh ingredients,,85,90,20,None,true
+2,BBQ Chicken Bowl 92,Healthy chef special #92,Bowl,Lunch,Mexican,667,25,30,10,7,249,false,,Fresh ingredients,,86,91,25,Mild,true
+3,Paneer Protein Plate 93,Healthy chef special #93,Meal,Dinner,Healthy Indian,354,28,35,12,8,269,true,,Fresh ingredients,Milk,87,92,10,Medium,true
+4,Turkey Wrap 94,Healthy chef special #94,Wrap,Breakfast,Continental,361,31,40,14,9,289,false,,Fresh ingredients,,88,93,15,None,true
+5,Avocado Chicken Bowl 95,Healthy chef special #95,Bowl,Lunch,Mediterranean,368,34,45,16,10,299,false,,Fresh ingredients,,89,94,20,Mild,true
+6,Salmon Power Bowl 96,Healthy chef special #96,Bowl,Dinner,Mexican,375,37,50,18,11,329,false,,Fresh ingredients,,90,95,25,Medium,true
+7,Lean Beef Bowl 97,Healthy chef special #97,Bowl,Breakfast,Healthy Indian,382,40,55,20,4,179,false,,Fresh ingredients,,91,96,10,None,true
+8,Moong Protein Bowl 98,Healthy chef special #98,Bowl,Lunch,Continental,389,43,60,22,5,199,true,,Fresh ingredients,,92,97,15,Mild,true
+9,Protein Pancakes 99,Healthy chef special #99,Meal,Dinner,Mediterranean,396,46,65,24,6,219,true,,Fresh ingredients,,93,98,20,Medium,true
+10,Chicken Tikka Bowl 100,Healthy chef special #100,Bowl,Breakfast,Mexican,403,49,25,8,7,249,false,,Fresh ingredients,,94,99,25,None,true
+1,Teriyaki Chicken Bowl 101,Healthy chef special #101,Bowl,Breakfast,Healthy Indian,360,20,22,7,4,179,false,,Fresh ingredients,,84,81,10,None,true
+2,Mediterranean Paneer Bowl 102,Healthy chef special #102,Bowl,Lunch,Mediterranean,369,22,26,10,5,199,true,,Fresh ingredients,Milk,85,82,15,Mild,true
+3,Thai Basil Chicken 103,Healthy chef special #103,Meal,Dinner,Asian,378,24,30,13,6,219,false,,Fresh ingredients,,86,83,20,Medium,true
+4,Vegan Buddha Bowl 104,Healthy chef special #104,Bowl,Breakfast,Mexican,387,26,34,16,7,249,true,,Fresh ingredients,,87,84,25,None,true
+5,Mexican Protein Wrap 105,Healthy chef special #105,Wrap,Lunch,Continental,396,28,38,19,8,269,false,,Fresh ingredients,,88,85,10,Mild,true
+6,Spinach Corn Sandwich 106,Healthy chef special #106,Meal,Dinner,Healthy Indian,405,30,42,22,9,289,true,,Fresh ingredients,,89,86,15,Medium,true
+7,Grilled Fish Plate 107,Healthy chef special #107,Meal,Breakfast,Mediterranean,414,32,46,7,10,299,false,,Fresh ingredients,,90,87,20,None,true
+8,Protein Smoothie 108,Healthy chef special #108,Meal,Lunch,Asian,423,34,50,10,11,329,true,,Fresh ingredients,,91,88,25,Mild,true
+9,Chicken Steak Meal 109,Healthy chef special #109,Meal,Dinner,Mexican,432,36,54,13,12,179,false,,Fresh ingredients,,92,89,10,Medium,true
+10,Falafel Bowl 110,Healthy chef special #110,Bowl,Breakfast,Continental,441,38,58,16,4,199,true,,Fresh ingredients,,93,90,15,None,true
+11,Egg Protein Muffins 111,Healthy chef special #111,Meal,Lunch,Healthy Indian,450,40,62,19,5,219,false,,Fresh ingredients,,94,91,20,Mild,true
+12,Paneer Tikka Wrap 112,Healthy chef special #112,Wrap,Dinner,Mediterranean,459,42,66,22,6,249,true,,Fresh ingredients,Milk,95,92,25,Medium,true
+13,Korean Chicken Bowl 113,Healthy chef special #113,Bowl,Breakfast,Asian,468,44,70,7,7,269,false,,Fresh ingredients,,96,93,10,None,true
+14,Tofu Teriyaki Bowl 114,Healthy chef special #114,Bowl,Lunch,Mexican,477,46,24,10,8,289,true,,Fresh ingredients,,97,94,15,Mild,true
+15,Beef Power Plate 115,Healthy chef special #115,Meal,Dinner,Continental,486,48,28,13,9,299,false,,Fresh ingredients,,98,95,20,Medium,true
+1,Chickpea Quinoa Bowl 116,Healthy chef special #116,Bowl,Breakfast,Healthy Indian,495,50,32,16,10,329,true,,Fresh ingredients,,99,96,25,None,true
+2,Turkey Rice Bowl 117,Healthy chef special #117,Bowl,Lunch,Mediterranean,504,52,36,19,11,179,false,,Fresh ingredients,,84,97,10,Mild,true
+3,Oats Banana Pancakes 118,Healthy chef special #118,Meal,Dinner,Asian,513,54,40,22,12,199,true,,Fresh ingredients,,85,98,15,Medium,true
+4,Chicken Spinach Wrap 119,Healthy chef special #119,Wrap,Breakfast,Mexican,522,21,44,7,4,219,false,,Fresh ingredients,,86,99,20,None,true
+5,High Protein Khichdi 120,Healthy chef special #120,Meal,Lunch,Continental,531,23,48,10,5,249,true,,Fresh ingredients,,87,81,25,Mild,true
+6,Teriyaki Chicken Bowl 121,Healthy chef special #121,Bowl,Dinner,Healthy Indian,540,25,52,13,6,269,false,,Fresh ingredients,,88,82,10,Medium,true
+7,Mediterranean Paneer Bowl 122,Healthy chef special #122,Bowl,Breakfast,Mediterranean,549,27,56,16,7,289,true,,Fresh ingredients,Milk,89,83,15,None,true
+8,Thai Basil Chicken 123,Healthy chef special #123,Meal,Lunch,Asian,558,29,60,19,8,299,false,,Fresh ingredients,,90,84,20,Mild,true
+9,Vegan Buddha Bowl 124,Healthy chef special #124,Bowl,Dinner,Mexican,567,31,64,22,9,329,true,,Fresh ingredients,,91,85,25,Medium,true
+10,Mexican Protein Wrap 125,Healthy chef special #125,Wrap,Breakfast,Continental,576,33,68,7,10,179,false,,Fresh ingredients,,92,86,10,None,true
+11,Spinach Corn Sandwich 126,Healthy chef special #126,Meal,Lunch,Healthy Indian,585,35,22,10,11,199,true,,Fresh ingredients,,93,87,15,Mild,true
+12,Grilled Fish Plate 127,Healthy chef special #127,Meal,Dinner,Mediterranean,594,37,26,13,12,219,false,,Fresh ingredients,,94,88,20,Medium,true
+13,Protein Smoothie 128,Healthy chef special #128,Meal,Breakfast,Asian,603,39,30,16,4,249,true,,Fresh ingredients,,95,89,25,None,true
+14,Chicken Steak Meal 129,Healthy chef special #129,Meal,Lunch,Mexican,612,41,34,19,5,269,false,,Fresh ingredients,,96,90,10,Mild,true
+15,Falafel Bowl 130,Healthy chef special #130,Bowl,Dinner,Continental,621,43,38,22,6,289,true,,Fresh ingredients,,97,91,15,Medium,true
+1,Egg Protein Muffins 131,Healthy chef special #131,Meal,Breakfast,Healthy Indian,630,45,42,7,7,299,false,,Fresh ingredients,,98,92,20,None,true
+2,Paneer Tikka Wrap 132,Healthy chef special #132,Wrap,Lunch,Mediterranean,639,47,46,10,8,329,true,,Fresh ingredients,Milk,99,93,25,Mild,true
+3,Korean Chicken Bowl 133,Healthy chef special #133,Bowl,Dinner,Asian,648,49,50,13,9,179,false,,Fresh ingredients,,84,94,10,Medium,true
+4,Tofu Teriyaki Bowl 134,Healthy chef special #134,Bowl,Breakfast,Mexican,657,51,54,16,10,199,true,,Fresh ingredients,,85,95,15,None,true
+5,Beef Power Plate 135,Healthy chef special #135,Meal,Lunch,Continental,666,53,58,19,11,219,false,,Fresh ingredients,,86,96,20,Mild,true
+6,Chickpea Quinoa Bowl 136,Healthy chef special #136,Bowl,Dinner,Healthy Indian,675,20,62,22,12,249,true,,Fresh ingredients,,87,97,25,Medium,true
+7,Turkey Rice Bowl 137,Healthy chef special #137,Bowl,Breakfast,Mediterranean,684,22,66,7,4,269,false,,Fresh ingredients,,88,98,10,None,true
+8,Oats Banana Pancakes 138,Healthy chef special #138,Meal,Lunch,Asian,693,24,70,10,5,289,true,,Fresh ingredients,,89,99,15,Mild,true
+9,Chicken Spinach Wrap 139,Healthy chef special #139,Wrap,Dinner,Mexican,362,26,24,13,6,299,false,,Fresh ingredients,,90,81,20,Medium,true
+10,High Protein Khichdi 140,Healthy chef special #140,Meal,Breakfast,Continental,371,28,28,16,7,329,true,,Fresh ingredients,,91,82,25,None,true
+11,Teriyaki Chicken Bowl 141,Healthy chef special #141,Bowl,Lunch,Healthy Indian,380,30,32,19,8,179,false,,Fresh ingredients,,92,83,10,Mild,true
+12,Mediterranean Paneer Bowl 142,Healthy chef special #142,Bowl,Dinner,Mediterranean,389,32,36,22,9,199,true,,Fresh ingredients,Milk,93,84,15,Medium,true
+13,Thai Basil Chicken 143,Healthy chef special #143,Meal,Breakfast,Asian,398,34,40,7,10,219,false,,Fresh ingredients,,94,85,20,None,true
+14,Vegan Buddha Bowl 144,Healthy chef special #144,Bowl,Lunch,Mexican,407,36,44,10,11,249,true,,Fresh ingredients,,95,86,25,Mild,true
+15,Mexican Protein Wrap 145,Healthy chef special #145,Wrap,Dinner,Continental,416,38,48,13,12,269,false,,Fresh ingredients,,96,87,10,Medium,true
+1,Spinach Corn Sandwich 146,Healthy chef special #146,Meal,Breakfast,Healthy Indian,425,40,52,16,4,289,true,,Fresh ingredients,,97,88,15,None,true
+2,Grilled Fish Plate 147,Healthy chef special #147,Meal,Lunch,Mediterranean,434,42,56,19,5,299,false,,Fresh ingredients,,98,89,20,Mild,true
+3,Protein Smoothie 148,Healthy chef special #148,Meal,Dinner,Asian,443,44,60,22,6,329,true,,Fresh ingredients,,99,90,25,Medium,true
+4,Chicken Steak Meal 149,Healthy chef special #149,Meal,Breakfast,Mexican,452,46,64,7,7,179,false,,Fresh ingredients,,84,91,10,None,true
+5,Falafel Bowl 150,Healthy chef special #150,Bowl,Lunch,Continental,461,48,68,10,8,199,true,,Fresh ingredients,,85,92,15,Mild,true
+6,Egg Protein Muffins 151,Healthy chef special #151,Meal,Dinner,Healthy Indian,470,50,22,13,9,219,false,,Fresh ingredients,,86,93,20,Medium,true
+7,Paneer Tikka Wrap 152,Healthy chef special #152,Wrap,Breakfast,Mediterranean,479,52,26,16,10,249,true,,Fresh ingredients,Milk,87,94,25,None,true
+8,Korean Chicken Bowl 153,Healthy chef special #153,Bowl,Lunch,Asian,488,54,30,19,11,269,false,,Fresh ingredients,,88,95,10,Mild,true
+9,Tofu Teriyaki Bowl 154,Healthy chef special #154,Bowl,Dinner,Mexican,497,21,34,22,12,289,true,,Fresh ingredients,,89,96,15,Medium,true
+10,Beef Power Plate 155,Healthy chef special #155,Meal,Breakfast,Continental,506,23,38,7,4,299,false,,Fresh ingredients,,90,97,20,None,true
+11,Chickpea Quinoa Bowl 156,Healthy chef special #156,Bowl,Lunch,Healthy Indian,515,25,42,10,5,329,true,,Fresh ingredients,,91,98,25,Mild,true
+12,Turkey Rice Bowl 157,Healthy chef special #157,Bowl,Dinner,Mediterranean,524,27,46,13,6,179,false,,Fresh ingredients,,92,99,10,Medium,true
+13,Oats Banana Pancakes 158,Healthy chef special #158,Meal,Breakfast,Asian,533,29,50,16,7,199,true,,Fresh ingredients,,93,81,15,None,true
+14,Chicken Spinach Wrap 159,Healthy chef special #159,Wrap,Lunch,Mexican,542,31,54,19,8,219,false,,Fresh ingredients,,94,82,20,Mild,true
+15,High Protein Khichdi 160,Healthy chef special #160,Meal,Dinner,Continental,551,33,58,22,9,249,true,,Fresh ingredients,,95,83,25,Medium,true
+1,Teriyaki Chicken Bowl 161,Healthy chef special #161,Bowl,Breakfast,Healthy Indian,560,35,62,7,10,269,false,,Fresh ingredients,,96,84,10,None,true
+2,Mediterranean Paneer Bowl 162,Healthy chef special #162,Bowl,Lunch,Mediterranean,569,37,66,10,11,289,true,,Fresh ingredients,Milk,97,85,15,Mild,true
+3,Thai Basil Chicken 163,Healthy chef special #163,Meal,Dinner,Asian,578,39,70,13,12,299,false,,Fresh ingredients,,98,86,20,Medium,true
+4,Vegan Buddha Bowl 164,Healthy chef special #164,Bowl,Breakfast,Mexican,587,41,24,16,4,329,true,,Fresh ingredients,,99,87,25,None,true
+5,Mexican Protein Wrap 165,Healthy chef special #165,Wrap,Lunch,Continental,596,43,28,19,5,179,false,,Fresh ingredients,,84,88,10,Mild,true
+6,Spinach Corn Sandwich 166,Healthy chef special #166,Meal,Dinner,Healthy Indian,605,45,32,22,6,199,true,,Fresh ingredients,,85,89,15,Medium,true
+7,Grilled Fish Plate 167,Healthy chef special #167,Meal,Breakfast,Mediterranean,614,47,36,7,7,219,false,,Fresh ingredients,,86,90,20,None,true
+8,Protein Smoothie 168,Healthy chef special #168,Meal,Lunch,Asian,623,49,40,10,8,249,true,,Fresh ingredients,,87,91,25,Mild,true
+9,Chicken Steak Meal 169,Healthy chef special #169,Meal,Dinner,Mexican,632,51,44,13,9,269,false,,Fresh ingredients,,88,92,10,Medium,true
+10,Falafel Bowl 170,Healthy chef special #170,Bowl,Breakfast,Continental,641,53,48,16,10,289,true,,Fresh ingredients,,89,93,15,None,true
+11,Egg Protein Muffins 171,Healthy chef special #171,Meal,Lunch,Healthy Indian,650,20,52,19,11,299,false,,Fresh ingredients,,90,94,20,Mild,true
+12,Paneer Tikka Wrap 172,Healthy chef special #172,Wrap,Dinner,Mediterranean,659,22,56,22,12,329,true,,Fresh ingredients,Milk,91,95,25,Medium,true
+13,Korean Chicken Bowl 173,Healthy chef special #173,Bowl,Breakfast,Asian,668,24,60,7,4,179,false,,Fresh ingredients,,92,96,10,None,true
+14,Tofu Teriyaki Bowl 174,Healthy chef special #174,Bowl,Lunch,Mexican,677,26,64,10,5,199,true,,Fresh ingredients,,93,97,15,Mild,true
+15,Beef Power Plate 175,Healthy chef special #175,Meal,Dinner,Continental,686,28,68,13,6,219,false,,Fresh ingredients,,94,98,20,Medium,true
+1,Chickpea Quinoa Bowl 176,Healthy chef special #176,Bowl,Breakfast,Healthy Indian,695,30,22,16,7,249,true,,Fresh ingredients,,95,99,25,None,true
+2,Turkey Rice Bowl 177,Healthy chef special #177,Bowl,Lunch,Mediterranean,364,32,26,19,8,269,false,,Fresh ingredients,,96,81,10,Mild,true
+3,Oats Banana Pancakes 178,Healthy chef special #178,Meal,Dinner,Asian,373,34,30,22,9,289,true,,Fresh ingredients,,97,82,15,Medium,true
+4,Chicken Spinach Wrap 179,Healthy chef special #179,Wrap,Breakfast,Mexican,382,36,34,7,10,299,false,,Fresh ingredients,,98,83,20,None,true
+5,High Protein Khichdi 180,Healthy chef special #180,Meal,Lunch,Continental,391,38,38,10,11,329,true,,Fresh ingredients,,99,84,25,Mild,true
+6,Teriyaki Chicken Bowl 181,Healthy chef special #181,Bowl,Dinner,Healthy Indian,400,40,42,13,12,179,false,,Fresh ingredients,,84,85,10,Medium,true
+7,Mediterranean Paneer Bowl 182,Healthy chef special #182,Bowl,Breakfast,Mediterranean,409,42,46,16,4,199,true,,Fresh ingredients,Milk,85,86,15,None,true
+8,Thai Basil Chicken 183,Healthy chef special #183,Meal,Lunch,Asian,418,44,50,19,5,219,false,,Fresh ingredients,,86,87,20,Mild,true
+9,Vegan Buddha Bowl 184,Healthy chef special #184,Bowl,Dinner,Mexican,427,46,54,22,6,249,true,,Fresh ingredients,,87,88,25,Medium,true
+10,Mexican Protein Wrap 185,Healthy chef special #185,Wrap,Breakfast,Continental,436,48,58,7,7,269,false,,Fresh ingredients,,88,89,10,None,true
+11,Spinach Corn Sandwich 186,Healthy chef special #186,Meal,Lunch,Healthy Indian,445,50,62,10,8,289,true,,Fresh ingredients,,89,90,15,Mild,true
+12,Grilled Fish Plate 187,Healthy chef special #187,Meal,Dinner,Mediterranean,454,52,66,13,9,299,false,,Fresh ingredients,,90,91,20,Medium,true
+13,Protein Smoothie 188,Healthy chef special #188,Meal,Breakfast,Asian,463,54,70,16,10,329,true,,Fresh ingredients,,91,92,25,None,true
+14,Chicken Steak Meal 189,Healthy chef special #189,Meal,Lunch,Mexican,472,21,24,19,11,179,false,,Fresh ingredients,,92,93,10,Mild,true
+15,Falafel Bowl 190,Healthy chef special #190,Bowl,Dinner,Continental,481,23,28,22,12,199,true,,Fresh ingredients,,93,94,15,Medium,true
+1,Egg Protein Muffins 191,Healthy chef special #191,Meal,Breakfast,Healthy Indian,490,25,32,7,4,219,false,,Fresh ingredients,,94,95,20,None,true
+2,Paneer Tikka Wrap 192,Healthy chef special #192,Wrap,Lunch,Mediterranean,499,27,36,10,5,249,true,,Fresh ingredients,Milk,95,96,25,Mild,true
+3,Korean Chicken Bowl 193,Healthy chef special #193,Bowl,Dinner,Asian,508,29,40,13,6,269,false,,Fresh ingredients,,96,97,10,Medium,true
+4,Tofu Teriyaki Bowl 194,Healthy chef special #194,Bowl,Breakfast,Mexican,517,31,44,16,7,289,true,,Fresh ingredients,,97,98,15,None,true
+5,Beef Power Plate 195,Healthy chef special #195,Meal,Lunch,Continental,526,33,48,19,8,299,false,,Fresh ingredients,,98,99,20,Mild,true
+6,Chickpea Quinoa Bowl 196,Healthy chef special #196,Bowl,Dinner,Healthy Indian,535,35,52,22,9,329,true,,Fresh ingredients,,99,81,25,Medium,true
+7,Turkey Rice Bowl 197,Healthy chef special #197,Bowl,Breakfast,Mediterranean,544,37,56,7,10,179,false,,Fresh ingredients,,84,82,10,None,true
+8,Oats Banana Pancakes 198,Healthy chef special #198,Meal,Lunch,Asian,553,39,60,10,11,199,true,,Fresh ingredients,,85,83,15,Mild,true
+9,Chicken Spinach Wrap 199,Healthy chef special #199,Wrap,Dinner,Mexican,562,41,64,13,12,219,false,,Fresh ingredients,,86,84,20,Medium,true
+10,High Protein Khichdi 200,Healthy chef special #200,Meal,Breakfast,Continental,571,43,68,16,4,249,true,,Fresh ingredients,,87,85,25,None,true
+1,Herb Chicken Bowl 201,Healthy chef special #201,Bowl,Breakfast,Healthy Indian,340,21,24,6,4,179,false,,Fresh ingredients,,84,80,10,None,true
+2,Power Paneer Meal 202,Healthy chef special #202,Meal,Lunch,Continental,351,24,29,8,5,199,true,,Fresh ingredients,Milk,85,81,15,Mild,true
+3,Grilled Tofu Wrap 203,Healthy chef special #203,Wrap,Dinner,Asian,362,27,34,10,6,219,true,,Fresh ingredients,,86,82,20,Medium,true
+4,Chicken Pesto Pasta 204,Healthy chef special #204,Meal,Breakfast,Mediterranean,373,30,39,12,7,249,false,,Fresh ingredients,,87,83,25,None,true
+5,Protein Idli Combo 205,Healthy chef special #205,Meal,Lunch,Mexican,384,33,44,14,8,269,true,,Fresh ingredients,,88,84,10,Mild,true
+6,Omelette Bowl 206,Healthy chef special #206,Bowl,Dinner,Healthy Indian,395,36,49,16,9,289,false,,Fresh ingredients,,89,85,15,Medium,true
+7,Salmon Quinoa Plate 207,Healthy chef special #207,Meal,Breakfast,Continental,406,39,54,18,10,299,false,,Fresh ingredients,,90,86,20,None,true
+8,Veg Protein Salad 208,Healthy chef special #208,Meal,Lunch,Asian,417,42,59,20,11,329,true,,Fresh ingredients,,91,87,25,Mild,true
+9,Chicken Shawarma Bowl 209,Healthy chef special #209,Bowl,Dinner,Mediterranean,428,45,64,22,4,179,false,,Fresh ingredients,,92,88,10,Medium,true
+10,Soya Chunk Bowl 210,Healthy chef special #210,Bowl,Breakfast,Mexican,439,48,69,24,5,199,true,,Fresh ingredients,,93,89,15,None,true
+11,Chicken Alfredo Fit 211,Healthy chef special #211,Meal,Lunch,Healthy Indian,450,51,26,6,6,219,false,,Fresh ingredients,,94,90,20,Mild,true
+12,Paneer Burrito 212,Healthy chef special #212,Meal,Dinner,Continental,461,54,31,8,7,249,true,,Fresh ingredients,Milk,95,91,25,Medium,true
+13,Grilled Prawns Plate 213,Healthy chef special #213,Meal,Breakfast,Asian,472,23,36,10,8,269,false,,Fresh ingredients,,96,92,10,None,true
+14,Avocado Veg Wrap 214,Healthy chef special #214,Wrap,Lunch,Mediterranean,483,26,41,12,9,289,true,,Fresh ingredients,,97,93,15,Mild,true
+15,Turkey Protein Plate 215,Healthy chef special #215,Meal,Dinner,Mexican,494,29,46,14,10,299,false,,Fresh ingredients,,98,94,20,Medium,true
+1,Mushroom Quinoa Bowl 216,Healthy chef special #216,Bowl,Breakfast,Healthy Indian,505,32,51,16,11,329,true,,Fresh ingredients,,99,95,25,None,true
+2,Chicken Fajita Bowl 217,Healthy chef special #217,Bowl,Lunch,Continental,516,35,56,18,4,179,false,,Fresh ingredients,,84,96,10,Mild,true
+3,Protein Muesli 218,Healthy chef special #218,Meal,Dinner,Asian,527,38,61,20,5,199,true,,Fresh ingredients,,85,97,15,Medium,true
+4,Egg & Oats Bowl 219,Healthy chef special #219,Bowl,Breakfast,Mediterranean,538,41,66,22,6,219,false,,Fresh ingredients,,86,98,20,None,true
+5,Veggie Rice Bowl 220,Healthy chef special #220,Bowl,Lunch,Mexican,549,44,71,24,7,249,true,,Fresh ingredients,,87,99,25,Mild,true
+6,Herb Chicken Bowl 221,Healthy chef special #221,Bowl,Dinner,Healthy Indian,560,47,28,6,8,269,false,,Fresh ingredients,,88,80,10,Medium,true
+7,Power Paneer Meal 222,Healthy chef special #222,Meal,Breakfast,Continental,571,50,33,8,9,289,true,,Fresh ingredients,Milk,89,81,15,None,true
+8,Grilled Tofu Wrap 223,Healthy chef special #223,Wrap,Lunch,Asian,582,53,38,10,10,299,true,,Fresh ingredients,,90,82,20,Mild,true
+9,Chicken Pesto Pasta 224,Healthy chef special #224,Meal,Dinner,Mediterranean,593,22,43,12,11,329,false,,Fresh ingredients,,91,83,25,Medium,true
+10,Protein Idli Combo 225,Healthy chef special #225,Meal,Breakfast,Mexican,604,25,48,14,4,179,true,,Fresh ingredients,,92,84,10,None,true
+11,Omelette Bowl 226,Healthy chef special #226,Bowl,Lunch,Healthy Indian,615,28,53,16,5,199,false,,Fresh ingredients,,93,85,15,Mild,true
+12,Salmon Quinoa Plate 227,Healthy chef special #227,Meal,Dinner,Continental,626,31,58,18,6,219,false,,Fresh ingredients,,94,86,20,Medium,true
+13,Veg Protein Salad 228,Healthy chef special #228,Meal,Breakfast,Asian,637,34,63,20,7,249,true,,Fresh ingredients,,95,87,25,None,true
+14,Chicken Shawarma Bowl 229,Healthy chef special #229,Bowl,Lunch,Mediterranean,648,37,68,22,8,269,false,,Fresh ingredients,,96,88,10,Mild,true
+15,Soya Chunk Bowl 230,Healthy chef special #230,Bowl,Dinner,Mexican,659,40,25,24,9,289,true,,Fresh ingredients,,97,89,15,Medium,true
+1,Chicken Alfredo Fit 231,Healthy chef special #231,Meal,Breakfast,Healthy Indian,670,43,30,6,10,299,false,,Fresh ingredients,,98,90,20,None,true
+2,Paneer Burrito 232,Healthy chef special #232,Meal,Lunch,Continental,681,46,35,8,11,329,true,,Fresh ingredients,Milk,99,91,25,Mild,true
+3,Grilled Prawns Plate 233,Healthy chef special #233,Meal,Dinner,Asian,692,49,40,10,4,179,false,,Fresh ingredients,,84,92,10,Medium,true
+4,Avocado Veg Wrap 234,Healthy chef special #234,Wrap,Breakfast,Mediterranean,343,52,45,12,5,199,true,,Fresh ingredients,,85,93,15,None,true
+5,Turkey Protein Plate 235,Healthy chef special #235,Meal,Lunch,Mexican,354,21,50,14,6,219,false,,Fresh ingredients,,86,94,20,Mild,true
+6,Mushroom Quinoa Bowl 236,Healthy chef special #236,Bowl,Dinner,Healthy Indian,365,24,55,16,7,249,true,,Fresh ingredients,,87,95,25,Medium,true
+7,Chicken Fajita Bowl 237,Healthy chef special #237,Bowl,Breakfast,Continental,376,27,60,18,8,269,false,,Fresh ingredients,,88,96,10,None,true
+8,Protein Muesli 238,Healthy chef special #238,Meal,Lunch,Asian,387,30,65,20,9,289,true,,Fresh ingredients,,89,97,15,Mild,true
+9,Egg & Oats Bowl 239,Healthy chef special #239,Bowl,Dinner,Mediterranean,398,33,70,22,10,299,false,,Fresh ingredients,,90,98,20,Medium,true
+10,Veggie Rice Bowl 240,Healthy chef special #240,Bowl,Breakfast,Mexican,409,36,27,24,11,329,true,,Fresh ingredients,,91,99,25,None,true
+11,Herb Chicken Bowl 241,Healthy chef special #241,Bowl,Lunch,Healthy Indian,420,39,32,6,4,179,false,,Fresh ingredients,,92,80,10,Mild,true
+12,Power Paneer Meal 242,Healthy chef special #242,Meal,Dinner,Continental,431,42,37,8,5,199,true,,Fresh ingredients,Milk,93,81,15,Medium,true
+13,Grilled Tofu Wrap 243,Healthy chef special #243,Wrap,Breakfast,Asian,442,45,42,10,6,219,true,,Fresh ingredients,,94,82,20,None,true
+14,Chicken Pesto Pasta 244,Healthy chef special #244,Meal,Lunch,Mediterranean,453,48,47,12,7,249,false,,Fresh ingredients,,95,83,25,Mild,true
+15,Protein Idli Combo 245,Healthy chef special #245,Meal,Dinner,Mexican,464,51,52,14,8,269,true,,Fresh ingredients,,96,84,10,Medium,true
+1,Omelette Bowl 246,Healthy chef special #246,Bowl,Breakfast,Healthy Indian,475,54,57,16,9,289,false,,Fresh ingredients,,97,85,15,None,true
+2,Salmon Quinoa Plate 247,Healthy chef special #247,Meal,Lunch,Continental,486,23,62,18,10,299,false,,Fresh ingredients,,98,86,20,Mild,true
+3,Veg Protein Salad 248,Healthy chef special #248,Meal,Dinner,Asian,497,26,67,20,11,329,true,,Fresh ingredients,,99,87,25,Medium,true
+4,Chicken Shawarma Bowl 249,Healthy chef special #249,Bowl,Breakfast,Mediterranean,508,29,24,22,4,179,false,,Fresh ingredients,,84,88,10,None,true
+5,Soya Chunk Bowl 250,Healthy chef special #250,Bowl,Lunch,Mexican,519,32,29,24,5,199,true,,Fresh ingredients,,85,89,15,Mild,true
+6,Chicken Alfredo Fit 251,Healthy chef special #251,Meal,Dinner,Healthy Indian,530,35,34,6,6,219,false,,Fresh ingredients,,86,90,20,Medium,true
+7,Paneer Burrito 252,Healthy chef special #252,Meal,Breakfast,Continental,541,38,39,8,7,249,true,,Fresh ingredients,Milk,87,91,25,None,true
+8,Grilled Prawns Plate 253,Healthy chef special #253,Meal,Lunch,Asian,552,41,44,10,8,269,false,,Fresh ingredients,,88,92,10,Mild,true
+9,Avocado Veg Wrap 254,Healthy chef special #254,Wrap,Dinner,Mediterranean,563,44,49,12,9,289,true,,Fresh ingredients,,89,93,15,Medium,true
+10,Turkey Protein Plate 255,Healthy chef special #255,Meal,Breakfast,Mexican,574,47,54,14,10,299,false,,Fresh ingredients,,90,94,20,None,true
+11,Mushroom Quinoa Bowl 256,Healthy chef special #256,Bowl,Lunch,Healthy Indian,585,50,59,16,11,329,true,,Fresh ingredients,,91,95,25,Mild,true
+12,Chicken Fajita Bowl 257,Healthy chef special #257,Bowl,Dinner,Continental,596,53,64,18,4,179,false,,Fresh ingredients,,92,96,10,Medium,true
+13,Protein Muesli 258,Healthy chef special #258,Meal,Breakfast,Asian,607,22,69,20,5,199,true,,Fresh ingredients,,93,97,15,None,true
+14,Egg & Oats Bowl 259,Healthy chef special #259,Bowl,Lunch,Mediterranean,618,25,26,22,6,219,false,,Fresh ingredients,,94,98,20,Mild,true
+15,Veggie Rice Bowl 260,Healthy chef special #260,Bowl,Dinner,Mexican,629,28,31,24,7,249,true,,Fresh ingredients,,95,99,25,Medium,true
+1,Herb Chicken Bowl 261,Healthy chef special #261,Bowl,Breakfast,Healthy Indian,640,31,36,6,8,269,false,,Fresh ingredients,,96,80,10,None,true
+2,Power Paneer Meal 262,Healthy chef special #262,Meal,Lunch,Continental,651,34,41,8,9,289,true,,Fresh ingredients,Milk,97,81,15,Mild,true
+3,Grilled Tofu Wrap 263,Healthy chef special #263,Wrap,Dinner,Asian,662,37,46,10,10,299,true,,Fresh ingredients,,98,82,20,Medium,true
+4,Chicken Pesto Pasta 264,Healthy chef special #264,Meal,Breakfast,Mediterranean,673,40,51,12,11,329,false,,Fresh ingredients,,99,83,25,None,true
+5,Protein Idli Combo 265,Healthy chef special #265,Meal,Lunch,Mexican,684,43,56,14,4,179,true,,Fresh ingredients,,84,84,10,Mild,true
+6,Omelette Bowl 266,Healthy chef special #266,Bowl,Dinner,Healthy Indian,695,46,61,16,5,199,false,,Fresh ingredients,,85,85,15,Medium,true
+7,Salmon Quinoa Plate 267,Healthy chef special #267,Meal,Breakfast,Continental,346,49,66,18,6,219,false,,Fresh ingredients,,86,86,20,None,true
+8,Veg Protein Salad 268,Healthy chef special #268,Meal,Lunch,Asian,357,52,71,20,7,249,true,,Fresh ingredients,,87,87,25,Mild,true
+9,Chicken Shawarma Bowl 269,Healthy chef special #269,Bowl,Dinner,Mediterranean,368,21,28,22,8,269,false,,Fresh ingredients,,88,88,10,Medium,true
+10,Soya Chunk Bowl 270,Healthy chef special #270,Bowl,Breakfast,Mexican,379,24,33,24,9,289,true,,Fresh ingredients,,89,89,15,None,true
+11,Chicken Alfredo Fit 271,Healthy chef special #271,Meal,Lunch,Healthy Indian,390,27,38,6,10,299,false,,Fresh ingredients,,90,90,20,Mild,true
+12,Paneer Burrito 272,Healthy chef special #272,Meal,Dinner,Continental,401,30,43,8,11,329,true,,Fresh ingredients,Milk,91,91,25,Medium,true
+13,Grilled Prawns Plate 273,Healthy chef special #273,Meal,Breakfast,Asian,412,33,48,10,4,179,false,,Fresh ingredients,,92,92,10,None,true
+14,Avocado Veg Wrap 274,Healthy chef special #274,Wrap,Lunch,Mediterranean,423,36,53,12,5,199,true,,Fresh ingredients,,93,93,15,Mild,true
+15,Turkey Protein Plate 275,Healthy chef special #275,Meal,Dinner,Mexican,434,39,58,14,6,219,false,,Fresh ingredients,,94,94,20,Medium,true
+1,Mushroom Quinoa Bowl 276,Healthy chef special #276,Bowl,Breakfast,Healthy Indian,445,42,63,16,7,249,true,,Fresh ingredients,,95,95,25,None,true
+2,Chicken Fajita Bowl 277,Healthy chef special #277,Bowl,Lunch,Continental,456,45,68,18,8,269,false,,Fresh ingredients,,96,96,10,Mild,true
+3,Protein Muesli 278,Healthy chef special #278,Meal,Dinner,Asian,467,48,25,20,9,289,true,,Fresh ingredients,,97,97,15,Medium,true
+4,Egg & Oats Bowl 279,Healthy chef special #279,Bowl,Breakfast,Mediterranean,478,51,30,22,10,299,false,,Fresh ingredients,,98,98,20,None,true
+5,Veggie Rice Bowl 280,Healthy chef special #280,Bowl,Lunch,Mexican,489,54,35,24,11,329,true,,Fresh ingredients,,99,99,25,Mild,true
+6,Herb Chicken Bowl 281,Healthy chef special #281,Bowl,Dinner,Healthy Indian,500,23,40,6,4,179,false,,Fresh ingredients,,84,80,10,Medium,true
+7,Power Paneer Meal 282,Healthy chef special #282,Meal,Breakfast,Continental,511,26,45,8,5,199,true,,Fresh ingredients,Milk,85,81,15,None,true
+8,Grilled Tofu Wrap 283,Healthy chef special #283,Wrap,Lunch,Asian,522,29,50,10,6,219,true,,Fresh ingredients,,86,82,20,Mild,true
+9,Chicken Pesto Pasta 284,Healthy chef special #284,Meal,Dinner,Mediterranean,533,32,55,12,7,249,false,,Fresh ingredients,,87,83,25,Medium,true
+10,Protein Idli Combo 285,Healthy chef special #285,Meal,Breakfast,Mexican,544,35,60,14,8,269,true,,Fresh ingredients,,88,84,10,None,true
+11,Omelette Bowl 286,Healthy chef special #286,Bowl,Lunch,Healthy Indian,555,38,65,16,9,289,false,,Fresh ingredients,,89,85,15,Mild,true
+12,Salmon Quinoa Plate 287,Healthy chef special #287,Meal,Dinner,Continental,566,41,70,18,10,299,false,,Fresh ingredients,,90,86,20,Medium,true
+13,Veg Protein Salad 288,Healthy chef special #288,Meal,Breakfast,Asian,577,44,27,20,11,329,true,,Fresh ingredients,,91,87,25,None,true
+14,Chicken Shawarma Bowl 289,Healthy chef special #289,Bowl,Lunch,Mediterranean,588,47,32,22,4,179,false,,Fresh ingredients,,92,88,10,Mild,true
+15,Soya Chunk Bowl 290,Healthy chef special #290,Bowl,Dinner,Mexican,599,50,37,24,5,199,true,,Fresh ingredients,,93,89,15,Medium,true
+1,Chicken Alfredo Fit 291,Healthy chef special #291,Meal,Breakfast,Healthy Indian,610,53,42,6,6,219,false,,Fresh ingredients,,94,90,20,None,true
+2,Paneer Burrito 292,Healthy chef special #292,Meal,Lunch,Continental,621,22,47,8,7,249,true,,Fresh ingredients,Milk,95,91,25,Mild,true
+3,Grilled Prawns Plate 293,Healthy chef special #293,Meal,Dinner,Asian,632,25,52,10,8,269,false,,Fresh ingredients,,96,92,10,Medium,true
+4,Avocado Veg Wrap 294,Healthy chef special #294,Wrap,Breakfast,Mediterranean,643,28,57,12,9,289,true,,Fresh ingredients,,97,93,15,None,true
+5,Turkey Protein Plate 295,Healthy chef special #295,Meal,Lunch,Mexican,654,31,62,14,10,299,false,,Fresh ingredients,,98,94,20,Mild,true
+6,Mushroom Quinoa Bowl 296,Healthy chef special #296,Bowl,Dinner,Healthy Indian,665,34,67,16,11,329,true,,Fresh ingredients,,99,95,25,Medium,true
+7,Chicken Fajita Bowl 297,Healthy chef special #297,Bowl,Breakfast,Continental,676,37,24,18,4,179,false,,Fresh ingredients,,84,96,10,None,true
+8,Protein Muesli 298,Healthy chef special #298,Meal,Lunch,Asian,687,40,29,20,5,199,true,,Fresh ingredients,,85,97,15,Mild,true
+9,Egg & Oats Bowl 299,Healthy chef special #299,Bowl,Dinner,Mediterranean,698,43,34,22,6,219,false,,Fresh ingredients,,86,98,20,Medium,true
+10,Veggie Rice Bowl 300,Healthy chef special #300,Bowl,Breakfast,Mexican,349,46,39,24,7,249,true,,Fresh ingredients,,87,99,25,None,true
+1,Chicken Satay Bowl 301,Healthy chef special #301,Bowl,Breakfast,Healthy Indian,330,20,20,6,4,179,False,,Fresh ingredients,,84,80,10,None,True
+2,Paneer Steak Plate 302,Healthy chef special #302,Meal,Lunch,Continental,343,24,26,8,5,199,True,,Fresh ingredients,Milk,85,81,15,Mild,True
+3,Tofu Thai Bowl 303,Healthy chef special #303,Bowl,Dinner,Asian,356,28,32,10,6,219,True,,Fresh ingredients,,86,82,20,Medium,True
+4,Chicken Teriyaki Rice 304,Healthy chef special #304,Meal,Breakfast,Mediterranean,369,32,38,12,7,249,False,,Fresh ingredients,,87,83,25,None,True
+5,Millet Power Bowl 305,Healthy chef special #305,Bowl,Lunch,Mexican,382,36,44,14,8,269,True,,Fresh ingredients,,88,84,10,Mild,True
+6,Egg Bhurji Bowl 306,Healthy chef special #306,Bowl,Dinner,Healthy Indian,395,40,50,16,9,289,False,,Fresh ingredients,,89,85,15,Medium,True
+7,Fish & Veg Plate 307,Healthy chef special #307,Meal,Breakfast,Continental,408,44,56,18,10,299,False,,Fresh ingredients,,90,86,20,None,True
+8,Green Detox Salad 308,Healthy chef special #308,Meal,Lunch,Asian,421,48,62,20,11,329,True,,Fresh ingredients,,91,87,25,Mild,True
+9,Chicken Hummus Bowl 309,Healthy chef special #309,Bowl,Dinner,Mediterranean,434,52,68,22,12,179,False,,Fresh ingredients,,92,88,10,Medium,True
+10,Soya Protein Curry 310,Healthy chef special #310,Meal,Breakfast,Mexican,447,20,74,6,4,199,True,,Fresh ingredients,,93,89,15,None,True
+11,Chicken Garlic Bowl 311,Healthy chef special #311,Bowl,Lunch,Healthy Indian,460,24,25,8,5,219,False,,Fresh ingredients,,94,90,20,Mild,True
+12,Paneer Spinach Meal 312,Healthy chef special #312,Meal,Dinner,Continental,473,28,31,10,6,249,True,,Fresh ingredients,Milk,95,91,25,Medium,True
+13,Shrimp Rice Bowl 313,Healthy chef special #313,Bowl,Breakfast,Asian,486,32,37,12,7,269,False,,Fresh ingredients,,96,92,10,None,True
+14,Falafel Wrap 314,Healthy chef special #314,Wrap,Lunch,Mediterranean,499,36,43,14,8,289,True,,Fresh ingredients,,97,93,15,Mild,True
+15,Turkey Deluxe Bowl 315,Healthy chef special #315,Bowl,Dinner,Mexican,512,40,49,16,9,299,False,,Fresh ingredients,,98,94,20,Medium,True
+1,Quinoa Veg Plate 316,Healthy chef special #316,Meal,Breakfast,Healthy Indian,525,44,55,18,10,329,True,,Fresh ingredients,,99,95,25,None,True
+2,Chicken Chipotle Bowl 317,Healthy chef special #317,Bowl,Lunch,Continental,538,48,61,20,11,179,False,,Fresh ingredients,,84,96,10,Mild,True
+3,Overnight Protein Oats 318,Healthy chef special #318,Meal,Dinner,Asian,551,52,67,22,12,199,True,,Fresh ingredients,,85,97,15,Medium,True
+4,Egg White Rice Bowl 319,Healthy chef special #319,Bowl,Breakfast,Mediterranean,564,20,73,6,4,219,False,,Fresh ingredients,,86,98,20,None,True
+5,Vegan Macro Bowl 320,Healthy chef special #320,Bowl,Lunch,Mexican,577,24,24,8,5,249,True,,Fresh ingredients,,87,99,25,Mild,True
+6,Chicken Satay Bowl 321,Healthy chef special #321,Bowl,Dinner,Healthy Indian,590,28,30,10,6,269,False,,Fresh ingredients,,88,80,10,Medium,True
+7,Paneer Steak Plate 322,Healthy chef special #322,Meal,Breakfast,Continental,603,32,36,12,7,289,True,,Fresh ingredients,Milk,89,81,15,None,True
+8,Tofu Thai Bowl 323,Healthy chef special #323,Bowl,Lunch,Asian,616,36,42,14,8,299,True,,Fresh ingredients,,90,82,20,Mild,True
+9,Chicken Teriyaki Rice 324,Healthy chef special #324,Meal,Dinner,Mediterranean,629,40,48,16,9,329,False,,Fresh ingredients,,91,83,25,Medium,True
+10,Millet Power Bowl 325,Healthy chef special #325,Bowl,Breakfast,Mexican,642,44,54,18,10,179,True,,Fresh ingredients,,92,84,10,None,True
+11,Egg Bhurji Bowl 326,Healthy chef special #326,Bowl,Lunch,Healthy Indian,655,48,60,20,11,199,False,,Fresh ingredients,,93,85,15,Mild,True
+12,Fish & Veg Plate 327,Healthy chef special #327,Meal,Dinner,Continental,668,52,66,22,12,219,False,,Fresh ingredients,,94,86,20,Medium,True
+13,Green Detox Salad 328,Healthy chef special #328,Meal,Breakfast,Asian,681,20,72,6,4,249,True,,Fresh ingredients,,95,87,25,None,True
+14,Chicken Hummus Bowl 329,Healthy chef special #329,Bowl,Lunch,Mediterranean,694,24,23,8,5,269,False,,Fresh ingredients,,96,88,10,Mild,True
+15,Soya Protein Curry 330,Healthy chef special #330,Meal,Dinner,Mexican,707,28,29,10,6,289,True,,Fresh ingredients,,97,89,15,Medium,True
+1,Chicken Garlic Bowl 331,Healthy chef special #331,Bowl,Breakfast,Healthy Indian,340,32,35,12,7,299,False,,Fresh ingredients,,98,90,20,None,True
+2,Paneer Spinach Meal 332,Healthy chef special #332,Meal,Lunch,Continental,353,36,41,14,8,329,True,,Fresh ingredients,Milk,99,91,25,Mild,True
+3,Shrimp Rice Bowl 333,Healthy chef special #333,Bowl,Dinner,Asian,366,40,47,16,9,179,False,,Fresh ingredients,,84,92,10,Medium,True
+4,Falafel Wrap 334,Healthy chef special #334,Wrap,Breakfast,Mediterranean,379,44,53,18,10,199,True,,Fresh ingredients,,85,93,15,None,True
+5,Turkey Deluxe Bowl 335,Healthy chef special #335,Bowl,Lunch,Mexican,392,48,59,20,11,219,False,,Fresh ingredients,,86,94,20,Mild,True
+6,Quinoa Veg Plate 336,Healthy chef special #336,Meal,Dinner,Healthy Indian,405,52,65,22,12,249,True,,Fresh ingredients,,87,95,25,Medium,True
+7,Chicken Chipotle Bowl 337,Healthy chef special #337,Bowl,Breakfast,Continental,418,20,71,6,4,269,False,,Fresh ingredients,,88,96,10,None,True
+8,Overnight Protein Oats 338,Healthy chef special #338,Meal,Lunch,Asian,431,24,22,8,5,289,True,,Fresh ingredients,,89,97,15,Mild,True
+9,Egg White Rice Bowl 339,Healthy chef special #339,Bowl,Dinner,Mediterranean,444,28,28,10,6,299,False,,Fresh ingredients,,90,98,20,Medium,True
+10,Vegan Macro Bowl 340,Healthy chef special #340,Bowl,Breakfast,Mexican,457,32,34,12,7,329,True,,Fresh ingredients,,91,99,25,None,True
+11,Chicken Satay Bowl 341,Healthy chef special #341,Bowl,Lunch,Healthy Indian,470,36,40,14,8,179,False,,Fresh ingredients,,92,80,10,Mild,True
+12,Paneer Steak Plate 342,Healthy chef special #342,Meal,Dinner,Continental,483,40,46,16,9,199,True,,Fresh ingredients,Milk,93,81,15,Medium,True
+13,Tofu Thai Bowl 343,Healthy chef special #343,Bowl,Breakfast,Asian,496,44,52,18,10,219,True,,Fresh ingredients,,94,82,20,None,True
+14,Chicken Teriyaki Rice 344,Healthy chef special #344,Meal,Lunch,Mediterranean,509,48,58,20,11,249,False,,Fresh ingredients,,95,83,25,Mild,True
+15,Millet Power Bowl 345,Healthy chef special #345,Bowl,Dinner,Mexican,522,52,64,22,12,269,True,,Fresh ingredients,,96,84,10,Medium,True
+1,Egg Bhurji Bowl 346,Healthy chef special #346,Bowl,Breakfast,Healthy Indian,535,20,70,6,4,289,False,,Fresh ingredients,,97,85,15,None,True
+2,Fish & Veg Plate 347,Healthy chef special #347,Meal,Lunch,Continental,548,24,21,8,5,299,False,,Fresh ingredients,,98,86,20,Mild,True
+3,Green Detox Salad 348,Healthy chef special #348,Meal,Dinner,Asian,561,28,27,10,6,329,True,,Fresh ingredients,,99,87,25,Medium,True
+4,Chicken Hummus Bowl 349,Healthy chef special #349,Bowl,Breakfast,Mediterranean,574,32,33,12,7,179,False,,Fresh ingredients,,84,88,10,None,True
+5,Soya Protein Curry 350,Healthy chef special #350,Meal,Lunch,Mexican,587,36,39,14,8,199,True,,Fresh ingredients,,85,89,15,Mild,True
+6,Chicken Garlic Bowl 351,Healthy chef special #351,Bowl,Dinner,Healthy Indian,600,40,45,16,9,219,False,,Fresh ingredients,,86,90,20,Medium,True
+7,Paneer Spinach Meal 352,Healthy chef special #352,Meal,Breakfast,Continental,613,44,51,18,10,249,True,,Fresh ingredients,Milk,87,91,25,None,True
+8,Shrimp Rice Bowl 353,Healthy chef special #353,Bowl,Lunch,Asian,626,48,57,20,11,269,False,,Fresh ingredients,,88,92,10,Mild,True
+9,Falafel Wrap 354,Healthy chef special #354,Wrap,Dinner,Mediterranean,639,52,63,22,12,289,True,,Fresh ingredients,,89,93,15,Medium,True
+10,Turkey Deluxe Bowl 355,Healthy chef special #355,Bowl,Breakfast,Mexican,652,20,69,6,4,299,False,,Fresh ingredients,,90,94,20,None,True
+11,Quinoa Veg Plate 356,Healthy chef special #356,Meal,Lunch,Healthy Indian,665,24,20,8,5,329,True,,Fresh ingredients,,91,95,25,Mild,True
+12,Chicken Chipotle Bowl 357,Healthy chef special #357,Bowl,Dinner,Continental,678,28,26,10,6,179,False,,Fresh ingredients,,92,96,10,Medium,True
+13,Overnight Protein Oats 358,Healthy chef special #358,Meal,Breakfast,Asian,691,32,32,12,7,199,True,,Fresh ingredients,,93,97,15,None,True
+14,Egg White Rice Bowl 359,Healthy chef special #359,Bowl,Lunch,Mediterranean,704,36,38,14,8,219,False,,Fresh ingredients,,94,98,20,Mild,True
+15,Vegan Macro Bowl 360,Healthy chef special #360,Bowl,Dinner,Mexican,337,40,44,16,9,249,True,,Fresh ingredients,,95,99,25,Medium,True
+1,Chicken Satay Bowl 361,Healthy chef special #361,Bowl,Breakfast,Healthy Indian,350,44,50,18,10,269,False,,Fresh ingredients,,96,80,10,None,True
+2,Paneer Steak Plate 362,Healthy chef special #362,Meal,Lunch,Continental,363,48,56,20,11,289,True,,Fresh ingredients,Milk,97,81,15,Mild,True
+3,Tofu Thai Bowl 363,Healthy chef special #363,Bowl,Dinner,Asian,376,52,62,22,12,299,True,,Fresh ingredients,,98,82,20,Medium,True
+4,Chicken Teriyaki Rice 364,Healthy chef special #364,Meal,Breakfast,Mediterranean,389,20,68,6,4,329,False,,Fresh ingredients,,99,83,25,None,True
+5,Millet Power Bowl 365,Healthy chef special #365,Bowl,Lunch,Mexican,402,24,74,8,5,179,True,,Fresh ingredients,,84,84,10,Mild,True
+6,Egg Bhurji Bowl 366,Healthy chef special #366,Bowl,Dinner,Healthy Indian,415,28,25,10,6,199,False,,Fresh ingredients,,85,85,15,Medium,True
+7,Fish & Veg Plate 367,Healthy chef special #367,Meal,Breakfast,Continental,428,32,31,12,7,219,False,,Fresh ingredients,,86,86,20,None,True
+8,Green Detox Salad 368,Healthy chef special #368,Meal,Lunch,Asian,441,36,37,14,8,249,True,,Fresh ingredients,,87,87,25,Mild,True
+9,Chicken Hummus Bowl 369,Healthy chef special #369,Bowl,Dinner,Mediterranean,454,40,43,16,9,269,False,,Fresh ingredients,,88,88,10,Medium,True
+10,Soya Protein Curry 370,Healthy chef special #370,Meal,Breakfast,Mexican,467,44,49,18,10,289,True,,Fresh ingredients,,89,89,15,None,True
+11,Chicken Garlic Bowl 371,Healthy chef special #371,Bowl,Lunch,Healthy Indian,480,48,55,20,11,299,False,,Fresh ingredients,,90,90,20,Mild,True
+12,Paneer Spinach Meal 372,Healthy chef special #372,Meal,Dinner,Continental,493,52,61,22,12,329,True,,Fresh ingredients,Milk,91,91,25,Medium,True
+13,Shrimp Rice Bowl 373,Healthy chef special #373,Bowl,Breakfast,Asian,506,20,67,6,4,179,False,,Fresh ingredients,,92,92,10,None,True
+14,Falafel Wrap 374,Healthy chef special #374,Wrap,Lunch,Mediterranean,519,24,73,8,5,199,True,,Fresh ingredients,,93,93,15,Mild,True
+15,Turkey Deluxe Bowl 375,Healthy chef special #375,Bowl,Dinner,Mexican,532,28,24,10,6,219,False,,Fresh ingredients,,94,94,20,Medium,True
+1,Quinoa Veg Plate 376,Healthy chef special #376,Meal,Breakfast,Healthy Indian,545,32,30,12,7,249,True,,Fresh ingredients,,95,95,25,None,True
+2,Chicken Chipotle Bowl 377,Healthy chef special #377,Bowl,Lunch,Continental,558,36,36,14,8,269,False,,Fresh ingredients,,96,96,10,Mild,True
+3,Overnight Protein Oats 378,Healthy chef special #378,Meal,Dinner,Asian,571,40,42,16,9,289,True,,Fresh ingredients,,97,97,15,Medium,True
+4,Egg White Rice Bowl 379,Healthy chef special #379,Bowl,Breakfast,Mediterranean,584,44,48,18,10,299,False,,Fresh ingredients,,98,98,20,None,True
+5,Vegan Macro Bowl 380,Healthy chef special #380,Bowl,Lunch,Mexican,597,48,54,20,11,329,True,,Fresh ingredients,,99,99,25,Mild,True
+6,Chicken Satay Bowl 381,Healthy chef special #381,Bowl,Dinner,Healthy Indian,610,52,60,22,12,179,False,,Fresh ingredients,,84,80,10,Medium,True
+7,Paneer Steak Plate 382,Healthy chef special #382,Meal,Breakfast,Continental,623,20,66,6,4,199,True,,Fresh ingredients,Milk,85,81,15,None,True
+8,Tofu Thai Bowl 383,Healthy chef special #383,Bowl,Lunch,Asian,636,24,72,8,5,219,True,,Fresh ingredients,,86,82,20,Mild,True
+9,Chicken Teriyaki Rice 384,Healthy chef special #384,Meal,Dinner,Mediterranean,649,28,23,10,6,249,False,,Fresh ingredients,,87,83,25,Medium,True
+10,Millet Power Bowl 385,Healthy chef special #385,Bowl,Breakfast,Mexican,662,32,29,12,7,269,True,,Fresh ingredients,,88,84,10,None,True
+11,Egg Bhurji Bowl 386,Healthy chef special #386,Bowl,Lunch,Healthy Indian,675,36,35,14,8,289,False,,Fresh ingredients,,89,85,15,Mild,True
+12,Fish & Veg Plate 387,Healthy chef special #387,Meal,Dinner,Continental,688,40,41,16,9,299,False,,Fresh ingredients,,90,86,20,Medium,True
+13,Green Detox Salad 388,Healthy chef special #388,Meal,Breakfast,Asian,701,44,47,18,10,329,True,,Fresh ingredients,,91,87,25,None,True
+14,Chicken Hummus Bowl 389,Healthy chef special #389,Bowl,Lunch,Mediterranean,334,48,53,20,11,179,False,,Fresh ingredients,,92,88,10,Mild,True
+15,Soya Protein Curry 390,Healthy chef special #390,Meal,Dinner,Mexican,347,52,59,22,12,199,True,,Fresh ingredients,,93,89,15,Medium,True
+1,Chicken Garlic Bowl 391,Healthy chef special #391,Bowl,Breakfast,Healthy Indian,360,20,65,6,4,219,False,,Fresh ingredients,,94,90,20,None,True
+2,Paneer Spinach Meal 392,Healthy chef special #392,Meal,Lunch,Continental,373,24,71,8,5,249,True,,Fresh ingredients,Milk,95,91,25,Mild,True
+3,Shrimp Rice Bowl 393,Healthy chef special #393,Bowl,Dinner,Asian,386,28,22,10,6,269,False,,Fresh ingredients,,96,92,10,Medium,True
+4,Falafel Wrap 394,Healthy chef special #394,Wrap,Breakfast,Mediterranean,399,32,28,12,7,289,True,,Fresh ingredients,,97,93,15,None,True
+5,Turkey Deluxe Bowl 395,Healthy chef special #395,Bowl,Lunch,Mexican,412,36,34,14,8,299,False,,Fresh ingredients,,98,94,20,Mild,True
+6,Quinoa Veg Plate 396,Healthy chef special #396,Meal,Dinner,Healthy Indian,425,40,40,16,9,329,True,,Fresh ingredients,,99,95,25,Medium,True
+7,Chicken Chipotle Bowl 397,Healthy chef special #397,Bowl,Breakfast,Continental,438,44,46,18,10,179,False,,Fresh ingredients,,84,96,10,None,True
+8,Overnight Protein Oats 398,Healthy chef special #398,Meal,Lunch,Asian,451,48,52,20,11,199,True,,Fresh ingredients,,85,97,15,Mild,True
+9,Egg White Rice Bowl 399,Healthy chef special #399,Bowl,Dinner,Mediterranean,464,52,58,22,12,219,False,,Fresh ingredients,,86,98,20,Medium,True
+10,Vegan Macro Bowl 400,Healthy chef special #400,Bowl,Breakfast,Mexican,477,20,64,6,4,249,True,,Fresh ingredients,,87,99,25,None,True
+1,Chicken Supreme Bowl 401,Healthy chef special #401,Bowl,Breakfast,Healthy Indian,340,22,24,7,4,179,False,,Fresh ingredients,,85,81,10,None,True
+2,Paneer Power Plate 402,Healthy chef special #402,Meal,Lunch,Continental,357,25,28,9,5,199,True,,Fresh ingredients,Milk,86,82,15,Mild,True
+3,Tofu Green Bowl 403,Healthy chef special #403,Bowl,Dinner,Asian,374,28,32,11,6,219,True,,Fresh ingredients,,87,83,20,Medium,True
+4,Chicken Lime Rice 404,Healthy chef special #404,Meal,Breakfast,Mediterranean,391,31,36,13,7,249,False,,Fresh ingredients,,88,84,25,None,True
+5,Millet Veg Bowl 405,Healthy chef special #405,Bowl,Lunch,Mexican,408,34,40,15,8,269,True,,Fresh ingredients,,89,85,10,Mild,True
+6,Egg White Delight 406,Healthy chef special #406,Meal,Dinner,Healthy Indian,425,37,44,17,9,289,False,,Fresh ingredients,,90,86,15,Medium,True
+7,Grilled Fish Power Plate 407,Healthy chef special #407,Meal,Breakfast,Continental,442,40,48,19,10,299,False,,Fresh ingredients,,91,87,20,None,True
+8,Kale Detox Salad 408,Healthy chef special #408,Meal,Lunch,Asian,459,43,52,21,11,329,True,,Fresh ingredients,,92,88,25,Mild,True
+9,Chicken Hummus Wrap 409,Healthy chef special #409,Wrap,Dinner,Mediterranean,476,46,56,23,4,179,False,,Fresh ingredients,,93,89,10,Medium,True
+10,Soya Protein Bowl 410,Healthy chef special #410,Bowl,Breakfast,Mexican,493,49,60,7,5,199,True,,Fresh ingredients,,94,90,15,None,True
+11,Garlic Herb Chicken 411,Healthy chef special #411,Meal,Lunch,Healthy Indian,510,52,64,9,6,219,False,,Fresh ingredients,,95,91,20,Mild,True
+12,Paneer Quinoa Bowl 412,Healthy chef special #412,Bowl,Dinner,Continental,527,22,68,11,7,249,True,,Fresh ingredients,Milk,96,92,25,Medium,True
+13,Prawn Protein Plate 413,Healthy chef special #413,Meal,Breakfast,Asian,544,25,24,13,8,269,False,,Fresh ingredients,,97,93,10,None,True
+14,Falafel Power Wrap 414,Healthy chef special #414,Wrap,Lunch,Mediterranean,561,28,28,15,9,289,True,,Fresh ingredients,,98,94,15,Mild,True
+15,Turkey Macro Bowl 415,Healthy chef special #415,Bowl,Dinner,Mexican,578,31,32,17,10,299,False,,Fresh ingredients,,99,95,20,Medium,True
+1,Quinoa Veg Supreme 416,Healthy chef special #416,Meal,Breakfast,Healthy Indian,595,34,36,19,11,329,True,,Fresh ingredients,,85,96,25,None,True
+2,Chipotle Chicken Bowl 417,Healthy chef special #417,Bowl,Lunch,Continental,612,37,40,21,4,179,False,,Fresh ingredients,,86,97,10,Mild,True
+3,Protein Overnight Oats 418,Healthy chef special #418,Meal,Dinner,Asian,629,40,44,23,5,199,True,,Fresh ingredients,,87,98,15,Medium,True
+4,Egg Protein Rice Bowl 419,Healthy chef special #419,Bowl,Breakfast,Mediterranean,646,43,48,7,6,219,False,,Fresh ingredients,,88,99,20,None,True
+5,Vegan Energy Bowl 420,Healthy chef special #420,Bowl,Lunch,Mexican,663,46,52,9,7,249,True,,Fresh ingredients,,89,81,25,Mild,True
+6,Chicken Supreme Bowl 421,Healthy chef special #421,Bowl,Dinner,Healthy Indian,680,49,56,11,8,269,False,,Fresh ingredients,,90,82,10,Medium,True
+7,Paneer Power Plate 422,Healthy chef special #422,Meal,Breakfast,Continental,697,52,60,13,9,289,True,,Fresh ingredients,Milk,91,83,15,None,True
+8,Tofu Green Bowl 423,Healthy chef special #423,Bowl,Lunch,Asian,354,22,64,15,10,299,True,,Fresh ingredients,,92,84,20,Mild,True
+9,Chicken Lime Rice 424,Healthy chef special #424,Meal,Dinner,Mediterranean,371,25,68,17,11,329,False,,Fresh ingredients,,93,85,25,Medium,True
+10,Millet Veg Bowl 425,Healthy chef special #425,Bowl,Breakfast,Mexican,388,28,24,19,4,179,True,,Fresh ingredients,,94,86,10,None,True
+11,Egg White Delight 426,Healthy chef special #426,Meal,Lunch,Healthy Indian,405,31,28,21,5,199,False,,Fresh ingredients,,95,87,15,Mild,True
+12,Grilled Fish Power Plate 427,Healthy chef special #427,Meal,Dinner,Continental,422,34,32,23,6,219,False,,Fresh ingredients,,96,88,20,Medium,True
+13,Kale Detox Salad 428,Healthy chef special #428,Meal,Breakfast,Asian,439,37,36,7,7,249,True,,Fresh ingredients,,97,89,25,None,True
+14,Chicken Hummus Wrap 429,Healthy chef special #429,Wrap,Lunch,Mediterranean,456,40,40,9,8,269,False,,Fresh ingredients,,98,90,10,Mild,True
+15,Soya Protein Bowl 430,Healthy chef special #430,Bowl,Dinner,Mexican,473,43,44,11,9,289,True,,Fresh ingredients,,99,91,15,Medium,True
+1,Garlic Herb Chicken 431,Healthy chef special #431,Meal,Breakfast,Healthy Indian,490,46,48,13,10,299,False,,Fresh ingredients,,85,92,20,None,True
+2,Paneer Quinoa Bowl 432,Healthy chef special #432,Bowl,Lunch,Continental,507,49,52,15,11,329,True,,Fresh ingredients,Milk,86,93,25,Mild,True
+3,Prawn Protein Plate 433,Healthy chef special #433,Meal,Dinner,Asian,524,52,56,17,4,179,False,,Fresh ingredients,,87,94,10,Medium,True
+4,Falafel Power Wrap 434,Healthy chef special #434,Wrap,Breakfast,Mediterranean,541,22,60,19,5,199,True,,Fresh ingredients,,88,95,15,None,True
+5,Turkey Macro Bowl 435,Healthy chef special #435,Bowl,Lunch,Mexican,558,25,64,21,6,219,False,,Fresh ingredients,,89,96,20,Mild,True
+6,Quinoa Veg Supreme 436,Healthy chef special #436,Meal,Dinner,Healthy Indian,575,28,68,23,7,249,True,,Fresh ingredients,,90,97,25,Medium,True
+7,Chipotle Chicken Bowl 437,Healthy chef special #437,Bowl,Breakfast,Continental,592,31,24,7,8,269,False,,Fresh ingredients,,91,98,10,None,True
+8,Protein Overnight Oats 438,Healthy chef special #438,Meal,Lunch,Asian,609,34,28,9,9,289,True,,Fresh ingredients,,92,99,15,Mild,True
+9,Egg Protein Rice Bowl 439,Healthy chef special #439,Bowl,Dinner,Mediterranean,626,37,32,11,10,299,False,,Fresh ingredients,,93,81,20,Medium,True
+10,Vegan Energy Bowl 440,Healthy chef special #440,Bowl,Breakfast,Mexican,643,40,36,13,11,329,True,,Fresh ingredients,,94,82,25,None,True
+11,Chicken Supreme Bowl 441,Healthy chef special #441,Bowl,Lunch,Healthy Indian,660,43,40,15,4,179,False,,Fresh ingredients,,95,83,10,Mild,True
+12,Paneer Power Plate 442,Healthy chef special #442,Meal,Dinner,Continental,677,46,44,17,5,199,True,,Fresh ingredients,Milk,96,84,15,Medium,True
+13,Tofu Green Bowl 443,Healthy chef special #443,Bowl,Breakfast,Asian,694,49,48,19,6,219,True,,Fresh ingredients,,97,85,20,None,True
+14,Chicken Lime Rice 444,Healthy chef special #444,Meal,Lunch,Mediterranean,351,52,52,21,7,249,False,,Fresh ingredients,,98,86,25,Mild,True
+15,Millet Veg Bowl 445,Healthy chef special #445,Bowl,Dinner,Mexican,368,22,56,23,8,269,True,,Fresh ingredients,,99,87,10,Medium,True
+1,Egg White Delight 446,Healthy chef special #446,Meal,Breakfast,Healthy Indian,385,25,60,7,9,289,False,,Fresh ingredients,,85,88,15,None,True
+2,Grilled Fish Power Plate 447,Healthy chef special #447,Meal,Lunch,Continental,402,28,64,9,10,299,False,,Fresh ingredients,,86,89,20,Mild,True
+3,Kale Detox Salad 448,Healthy chef special #448,Meal,Dinner,Asian,419,31,68,11,11,329,True,,Fresh ingredients,,87,90,25,Medium,True
+4,Chicken Hummus Wrap 449,Healthy chef special #449,Wrap,Breakfast,Mediterranean,436,34,24,13,4,179,False,,Fresh ingredients,,88,91,10,None,True
+5,Soya Protein Bowl 450,Healthy chef special #450,Bowl,Lunch,Mexican,453,37,28,15,5,199,True,,Fresh ingredients,,89,92,15,Mild,True
+6,Garlic Herb Chicken 451,Healthy chef special #451,Meal,Dinner,Healthy Indian,470,40,32,17,6,219,False,,Fresh ingredients,,90,93,20,Medium,True
+7,Paneer Quinoa Bowl 452,Healthy chef special #452,Bowl,Breakfast,Continental,487,43,36,19,7,249,True,,Fresh ingredients,Milk,91,94,25,None,True
+8,Prawn Protein Plate 453,Healthy chef special #453,Meal,Lunch,Asian,504,46,40,21,8,269,False,,Fresh ingredients,,92,95,10,Mild,True
+9,Falafel Power Wrap 454,Healthy chef special #454,Wrap,Dinner,Mediterranean,521,49,44,23,9,289,True,,Fresh ingredients,,93,96,15,Medium,True
+10,Turkey Macro Bowl 455,Healthy chef special #455,Bowl,Breakfast,Mexican,538,52,48,7,10,299,False,,Fresh ingredients,,94,97,20,None,True
+11,Quinoa Veg Supreme 456,Healthy chef special #456,Meal,Lunch,Healthy Indian,555,22,52,9,11,329,True,,Fresh ingredients,,95,98,25,Mild,True
+12,Chipotle Chicken Bowl 457,Healthy chef special #457,Bowl,Dinner,Continental,572,25,56,11,4,179,False,,Fresh ingredients,,96,99,10,Medium,True
+13,Protein Overnight Oats 458,Healthy chef special #458,Meal,Breakfast,Asian,589,28,60,13,5,199,True,,Fresh ingredients,,97,81,15,None,True
+14,Egg Protein Rice Bowl 459,Healthy chef special #459,Bowl,Lunch,Mediterranean,606,31,64,15,6,219,False,,Fresh ingredients,,98,82,20,Mild,True
+15,Vegan Energy Bowl 460,Healthy chef special #460,Bowl,Dinner,Mexican,623,34,68,17,7,249,True,,Fresh ingredients,,99,83,25,Medium,True
+1,Chicken Supreme Bowl 461,Healthy chef special #461,Bowl,Breakfast,Healthy Indian,640,37,24,19,8,269,False,,Fresh ingredients,,85,84,10,None,True
+2,Paneer Power Plate 462,Healthy chef special #462,Meal,Lunch,Continental,657,40,28,21,9,289,True,,Fresh ingredients,Milk,86,85,15,Mild,True
+3,Tofu Green Bowl 463,Healthy chef special #463,Bowl,Dinner,Asian,674,43,32,23,10,299,True,,Fresh ingredients,,87,86,20,Medium,True
+4,Chicken Lime Rice 464,Healthy chef special #464,Meal,Breakfast,Mediterranean,691,46,36,7,11,329,False,,Fresh ingredients,,88,87,25,None,True
+5,Millet Veg Bowl 465,Healthy chef special #465,Bowl,Lunch,Mexican,348,49,40,9,4,179,True,,Fresh ingredients,,89,88,10,Mild,True
+6,Egg White Delight 466,Healthy chef special #466,Meal,Dinner,Healthy Indian,365,52,44,11,5,199,False,,Fresh ingredients,,90,89,15,Medium,True
+7,Grilled Fish Power Plate 467,Healthy chef special #467,Meal,Breakfast,Continental,382,22,48,13,6,219,False,,Fresh ingredients,,91,90,20,None,True
+8,Kale Detox Salad 468,Healthy chef special #468,Meal,Lunch,Asian,399,25,52,15,7,249,True,,Fresh ingredients,,92,91,25,Mild,True
+9,Chicken Hummus Wrap 469,Healthy chef special #469,Wrap,Dinner,Mediterranean,416,28,56,17,8,269,False,,Fresh ingredients,,93,92,10,Medium,True
+10,Soya Protein Bowl 470,Healthy chef special #470,Bowl,Breakfast,Mexican,433,31,60,19,9,289,True,,Fresh ingredients,,94,93,15,None,True
+11,Garlic Herb Chicken 471,Healthy chef special #471,Meal,Lunch,Healthy Indian,450,34,64,21,10,299,False,,Fresh ingredients,,95,94,20,Mild,True
+12,Paneer Quinoa Bowl 472,Healthy chef special #472,Bowl,Dinner,Continental,467,37,68,23,11,329,True,,Fresh ingredients,Milk,96,95,25,Medium,True
+13,Prawn Protein Plate 473,Healthy chef special #473,Meal,Breakfast,Asian,484,40,24,7,4,179,False,,Fresh ingredients,,97,96,10,None,True
+14,Falafel Power Wrap 474,Healthy chef special #474,Wrap,Lunch,Mediterranean,501,43,28,9,5,199,True,,Fresh ingredients,,98,97,15,Mild,True
+15,Turkey Macro Bowl 475,Healthy chef special #475,Bowl,Dinner,Mexican,518,46,32,11,6,219,False,,Fresh ingredients,,99,98,20,Medium,True
+1,Quinoa Veg Supreme 476,Healthy chef special #476,Meal,Breakfast,Healthy Indian,535,49,36,13,7,249,True,,Fresh ingredients,,85,99,25,None,True
+2,Chipotle Chicken Bowl 477,Healthy chef special #477,Bowl,Lunch,Continental,552,52,40,15,8,269,False,,Fresh ingredients,,86,81,10,Mild,True
+3,Protein Overnight Oats 478,Healthy chef special #478,Meal,Dinner,Asian,569,22,44,17,9,289,True,,Fresh ingredients,,87,82,15,Medium,True
+4,Egg Protein Rice Bowl 479,Healthy chef special #479,Bowl,Breakfast,Mediterranean,586,25,48,19,10,299,False,,Fresh ingredients,,88,83,20,None,True
+5,Vegan Energy Bowl 480,Healthy chef special #480,Bowl,Lunch,Mexican,603,28,52,21,11,329,True,,Fresh ingredients,,89,84,25,Mild,True
+6,Chicken Supreme Bowl 481,Healthy chef special #481,Bowl,Dinner,Healthy Indian,620,31,56,23,4,179,False,,Fresh ingredients,,90,85,10,Medium,True
+7,Paneer Power Plate 482,Healthy chef special #482,Meal,Breakfast,Continental,637,34,60,7,5,199,True,,Fresh ingredients,Milk,91,86,15,None,True
+8,Tofu Green Bowl 483,Healthy chef special #483,Bowl,Lunch,Asian,654,37,64,9,6,219,True,,Fresh ingredients,,92,87,20,Mild,True
+9,Chicken Lime Rice 484,Healthy chef special #484,Meal,Dinner,Mediterranean,671,40,68,11,7,249,False,,Fresh ingredients,,93,88,25,Medium,True
+10,Millet Veg Bowl 485,Healthy chef special #485,Bowl,Breakfast,Mexican,688,43,24,13,8,269,True,,Fresh ingredients,,94,89,10,None,True
+11,Egg White Delight 486,Healthy chef special #486,Meal,Lunch,Healthy Indian,345,46,28,15,9,289,False,,Fresh ingredients,,95,90,15,Mild,True
+12,Grilled Fish Power Plate 487,Healthy chef special #487,Meal,Dinner,Continental,362,49,32,17,10,299,False,,Fresh ingredients,,96,91,20,Medium,True
+13,Kale Detox Salad 488,Healthy chef special #488,Meal,Breakfast,Asian,379,52,36,19,11,329,True,,Fresh ingredients,,97,92,25,None,True
+14,Chicken Hummus Wrap 489,Healthy chef special #489,Wrap,Lunch,Mediterranean,396,22,40,21,4,179,False,,Fresh ingredients,,98,93,10,Mild,True
+15,Soya Protein Bowl 490,Healthy chef special #490,Bowl,Dinner,Mexican,413,25,44,23,5,199,True,,Fresh ingredients,,99,94,15,Medium,True
+1,Garlic Herb Chicken 491,Healthy chef special #491,Meal,Breakfast,Healthy Indian,430,28,48,7,6,219,False,,Fresh ingredients,,85,95,20,None,True
+2,Paneer Quinoa Bowl 492,Healthy chef special #492,Bowl,Lunch,Continental,447,31,52,9,7,249,True,,Fresh ingredients,Milk,86,96,25,Mild,True
+3,Prawn Protein Plate 493,Healthy chef special #493,Meal,Dinner,Asian,464,34,56,11,8,269,False,,Fresh ingredients,,87,97,10,Medium,True
+4,Falafel Power Wrap 494,Healthy chef special #494,Wrap,Breakfast,Mediterranean,481,37,60,13,9,289,True,,Fresh ingredients,,88,98,15,None,True
+5,Turkey Macro Bowl 495,Healthy chef special #495,Bowl,Lunch,Mexican,498,40,64,15,10,299,False,,Fresh ingredients,,89,99,20,Mild,True
+6,Quinoa Veg Supreme 496,Healthy chef special #496,Meal,Dinner,Healthy Indian,515,43,68,17,11,329,True,,Fresh ingredients,,90,81,25,Medium,True
+7,Chipotle Chicken Bowl 497,Healthy chef special #497,Bowl,Breakfast,Continental,532,46,24,19,4,179,False,,Fresh ingredients,,91,82,10,None,True
+8,Protein Overnight Oats 498,Healthy chef special #498,Meal,Lunch,Asian,549,49,28,21,5,199,True,,Fresh ingredients,,92,83,15,Mild,True
+9,Egg Protein Rice Bowl 499,Healthy chef special #499,Bowl,Dinner,Mediterranean,566,52,32,23,6,219,False,,Fresh ingredients,,93,84,20,Medium,True
+10,Vegan Energy Bowl 500,Healthy chef special #500,Bowl,Breakfast,Mexican,583,22,36,7,7,249,True,,Fresh ingredients,,94,85,25,None,True

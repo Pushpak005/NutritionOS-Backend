@@ -7,71 +7,108 @@ def recommend_meals(user_id: int):
 
     with engine.connect() as conn:
 
+        # ==========================================
+        # User Profile
+        # ==========================================
+
         user = conn.execute(
 
             text("""
-
                 SELECT
 
                     name,
-
                     goal,
-
                     diet_preferences,
-
                     daily_budget,
-
                     daily_calories,
-
                     daily_protein
 
                 FROM users
 
-                WHERE id=:id
-
+                WHERE id = :id
             """),
 
             {
-
                 "id": user_id
+            }
+
+        ).mappings().first()
+
+        if not user:
+
+            return {
+
+                "remaining_calories": 0,
+
+                "remaining_protein": 0,
+
+                "recommendations": [],
+
+                "ai_message": "User not found."
 
             }
 
-        ).fetchone()
+        # ==========================================
+        # Today's Nutrition
+        # Source: meal_logs
+        # ==========================================
 
         consumed = conn.execute(
 
             text("""
-
                 SELECT
 
-                    COALESCE(SUM(mi.calories * CAST(m.quantity AS NUMERIC)),0) calories,
+                    COALESCE(
+                        SUM(calories),
+                        0
+                    ) AS calories,
 
-                    COALESCE(SUM(CAST(mi.protein AS NUMERIC) * CAST(m.quantity AS NUMERIC)),0) protein
+                    COALESCE(
+                        SUM(protein),
+                        0
+                    ) AS protein
 
-                FROM meals m
+                FROM meal_logs
 
-                JOIN menu_items mi
+                WHERE
 
-                ON m.menu_item_id = mi.id
+                    user_id = :id
 
-                WHERE m.user_id=:id
+                    AND DATE(eaten_at) = CURRENT_DATE
 
             """),
 
             {
-
                 "id": user_id
-
             }
 
-        ).fetchone()
+        ).mappings().first()
+
+        # ==========================================
+        # Remaining Nutrition
+        # ==========================================
+
+        daily_calories = float(
+            user["daily_calories"] or 0
+        )
+
+        daily_protein = float(
+            user["daily_protein"] or 0
+        )
+
+        consumed_calories = float(
+            consumed["calories"] or 0
+        )
+
+        consumed_protein = float(
+            consumed["protein"] or 0
+        )
 
         remaining_calories = max(
 
             0,
 
-            user.daily_calories - consumed.calories
+            daily_calories - consumed_calories
 
         )
 
@@ -79,68 +116,119 @@ def recommend_meals(user_id: int):
 
             0,
 
-            user.daily_protein - consumed.protein
+            daily_protein - consumed_protein
 
         )
+
+        # ==========================================
+        # Available Menu
+        # ==========================================
 
         menu = conn.execute(
 
             text("""
-
                 SELECT
 
                     id,
-
                     dish_name,
-
                     calories,
-
                     protein,
-
                     price,
-
                     is_veg
 
                 FROM menu_items
 
-                WHERE available = true
+                WHERE available = TRUE
 
             """)
 
-        ).fetchall()
+        ).mappings().all()
+
+    # ==========================================
+    # Rank Meals
+    # ==========================================
 
     recommendations = []
 
+    diet_preferences = (
+        str(user["diet_preferences"] or "")
+        .strip()
+        .lower()
+    )
+
     for meal in menu:
+
+        meal = dict(meal)
+
+        meal_calories = float(
+            meal["calories"] or 0
+        )
+
+        meal_protein = float(
+            meal["protein"] or 0
+        )
+
+        meal_price = float(
+            meal["price"] or 0
+        )
 
         score = 0
 
-        if meal.calories <= remaining_calories:
+        # ------------------------------------------
+        # Fits Remaining Calories
+        # ------------------------------------------
+
+        if meal_calories <= remaining_calories:
+
             score += 40
 
-        if meal.protein <= remaining_protein:
+        # ------------------------------------------
+        # Fits Remaining Protein
+        # ------------------------------------------
+
+        if meal_protein <= remaining_protein:
+
             score += 30
 
-        if meal.price <= user.daily_budget:
+        # ------------------------------------------
+        # Fits Daily Budget
+        # ------------------------------------------
+
+        if meal_price <= float(
+            user["daily_budget"] or 0
+        ):
+
             score += 20
+
+        # ------------------------------------------
+        # Vegetarian Preference
+        # ------------------------------------------
 
         if (
 
-            user.diet_preferences == "Veg"
+            "veg" in diet_preferences
 
-            and meal.is_veg
+            and meal["is_veg"]
 
         ):
 
             score += 10
 
+        # ------------------------------------------
+        # Recommendation
+        # ------------------------------------------
+
         recommendations.append({
 
             "score": score,
 
-            **dict(meal._mapping)
+            **meal
 
         })
+
+    # ==========================================
+    # Highest Score First
+    # ==========================================
 
     recommendations.sort(
 
@@ -152,33 +240,40 @@ def recommend_meals(user_id: int):
 
     top_meals = recommendations[:3]
 
+    # ==========================================
+    # AI Message
+    # ==========================================
+
     if top_meals:
 
         best = top_meals[0]
 
         ai_message = (
 
-            f"Hi {user.name} 👋\n\n"
+            f"Hi {user['name']} 👋\n\n"
 
-            f"You still have {remaining_calories:.0f} calories "
+            f"You still have "
+            f"{remaining_calories:.0f} calories "
 
-            f"and {remaining_protein:.0f}g protein remaining today.\n\n"
+            f"and "
+            f"{remaining_protein:.0f}g protein "
+            f"remaining today.\n\n"
 
             f"My top recommendation is "
-
             f"'{best['dish_name']}'.\n\n"
 
-            f"It contains {best['protein']}g protein, "
+            f"It contains "
+            f"{float(best['protein'] or 0):.0f}g protein, "
 
-            f"{best['calories']} kcal "
+            f"{float(best['calories'] or 0):.0f} kcal "
 
-            f"and costs ₹{best['price']}.\n\n"
+            f"and costs "
+            f"₹{float(best['price'] or 0):.0f}.\n\n"
 
             f"This meal supports your "
-
-            f"{user.goal} goal "
-
-            f"while staying within your daily nutrition target."
+            f"{user['goal']} goal "
+            f"while staying within your "
+            f"daily nutrition target."
 
         )
 
@@ -186,18 +281,27 @@ def recommend_meals(user_id: int):
 
         ai_message = (
 
-            "No suitable meal recommendations are available right now."
+            "No suitable meal recommendations "
+            "are available right now."
 
         )
 
+    # ==========================================
+    # Response
+    # ==========================================
+
     return {
 
-        "remaining_calories": remaining_calories,
+        "remaining_calories":
+            remaining_calories,
 
-        "remaining_protein": remaining_protein,
+        "remaining_protein":
+            remaining_protein,
 
-        "recommendations": top_meals,
+        "recommendations":
+            top_meals,
 
-        "ai_message": ai_message
+        "ai_message":
+            ai_message
 
     }

@@ -4,6 +4,7 @@ from sqlalchemy import text
 from app.database import engine
 from app.utils.auth_dependency import get_current_user
 
+
 router = APIRouter(
     prefix="/meal-log",
     tags=["Meal Log"]
@@ -22,32 +23,51 @@ def log_meal(
 
     with engine.begin() as conn:
 
-        # ------------------------
+        # --------------------------------------------------
         # Check Dish Exists
-        # ------------------------
+        # --------------------------------------------------
 
         dish = conn.execute(
+
             text("""
-                SELECT *
+                SELECT
+
+                    id,
+                    dish_name,
+                    meal_type,
+                    calories,
+                    protein,
+                    carbs,
+                    fat,
+                    fiber
+
                 FROM menu_items
+
                 WHERE id = :dish_id
+
             """),
+
             {
                 "dish_id": dish_id
             }
+
         ).mappings().first()
 
+
         if not dish:
+
             raise HTTPException(
                 status_code=404,
                 detail="Dish not found."
             )
 
-        # ------------------------
+
+        # --------------------------------------------------
         # Insert Meal Log
-        # ------------------------
+        # --------------------------------------------------
 
         conn.execute(
+
             text("""
                 INSERT INTO meal_logs
                 (
@@ -72,39 +92,55 @@ def log_meal(
                     :fat,
                     :fiber
                 )
+
             """),
+
             {
 
-                "user_id": current_user["user_id"],
+                "user_id":
+                    current_user["user_id"],
 
-                "dish_id": dish["id"],
+                "dish_id":
+                    dish["id"],
 
-                "meal_type": dish["meal_type"],
+                "meal_type":
+                    dish["meal_type"],
 
-                "calories": dish["calories"],
+                "calories":
+                    dish["calories"],
 
-                "protein": dish["protein"],
+                "protein":
+                    dish["protein"],
 
-                "carbs": dish["carbs"],
+                "carbs":
+                    dish["carbs"],
 
-                "fat": dish["fat"],
+                "fat":
+                    dish["fat"],
 
-                "fiber": dish["fiber"]
+                "fiber":
+                    dish["fiber"]
 
             }
+
         )
+
 
     return {
 
         "success": True,
 
-        "message": "Meal logged successfully.",
+        "message":
+            "Meal logged successfully.",
 
-        "dish": dish["dish_name"],
+        "dish":
+            dish["dish_name"],
 
-        "meal_type": dish["meal_type"],
+        "meal_type":
+            dish["meal_type"],
 
-        "calories": dish["calories"]
+        "calories":
+            dish["calories"]
 
     }
 
@@ -120,105 +156,325 @@ def get_today_meals(
 
     with engine.connect() as conn:
 
-        # ------------------------
-        # Get Today's Meals
-        # ------------------------
+        # ==================================================
+        # Today's Meals
+        #
+        # JOIN menu_items so frontend receives:
+        #
+        # dish_name
+        # image_key
+        # healthy_score
+        # price
+        # restaurant
+        #
+        # Nutrition Event metadata:
+        #
+        # source
+        # status
+        # ==================================================
 
         logs = conn.execute(
+
             text("""
                 SELECT
-                    id,
-                    dish_id,
-                    meal_type,
-                    calories,
-                    protein,
-                    carbs,
-                    fat,
-                    fiber,
-                    eaten_at
 
-                FROM meal_logs
+                    ml.id,
+
+                    ml.dish_id,
+
+                    ml.meal_type,
+
+                    ml.calories,
+
+                    ml.protein,
+
+                    ml.carbs,
+
+                    ml.fat,
+
+                    ml.fiber,
+
+                    ml.quantity,
+
+                    ml.source,
+
+                    ml.status,
+
+                    ml.eaten_at,
+
+
+                    -- Dish Information
+
+                    m.dish_name,
+
+                    m.image_key,
+
+                    m.healthy_score,
+
+                    m.price,
+
+                    m.category,
+
+                    m.is_veg,
+
+
+                    -- Restaurant Information
+
+                    r.restaurant_name,
+
+                    r.area,
+
+                    r.rating,
+
+                    r.delivery_time
+
+
+                FROM meal_logs ml
+
+
+                JOIN menu_items m
+
+                    ON m.id = ml.dish_id
+
+
+                LEFT JOIN restaurants r
+
+                    ON r.restaurant_id =
+                       m.restaurant_id
+
 
                 WHERE
-                    user_id = :user_id
-                    AND DATE(eaten_at) = CURRENT_DATE
 
-                ORDER BY eaten_at
+                    ml.user_id = :user_id
+
+                    AND DATE(ml.eaten_at)
+                        = CURRENT_DATE
+
+
+                ORDER BY
+
+                    ml.eaten_at DESC
+
             """),
+
             {
-                "user_id": current_user["user_id"]
+                "user_id":
+                    current_user["user_id"]
             }
+
         ).mappings().all()
 
-        # ------------------------
-        # User Daily Target
-        # ------------------------
+
+        # ==================================================
+        # User Daily Targets
+        # ==================================================
 
         user = conn.execute(
+
             text("""
                 SELECT
+
                     daily_calories,
+
                     daily_protein,
+
                     daily_carbs,
+
                     daily_fat,
+
                     daily_fiber
 
                 FROM users
 
                 WHERE id = :id
+
             """),
+
             {
-                "id": current_user["user_id"]
+                "id":
+                    current_user["user_id"]
             }
+
         ).mappings().first()
 
-    # ------------------------
-    # Totals
-    # ------------------------
 
-    total_calories = sum(log["calories"] or 0 for log in logs)
+    # ======================================================
+    # User Not Found
+    # ======================================================
 
-    total_protein = sum(float(log["protein"] or 0) for log in logs)
+    if not user:
 
-    total_carbs = sum(float(log["carbs"] or 0) for log in logs)
+        raise HTTPException(
+            status_code=404,
+            detail="User not found."
+        )
 
-    total_fat = sum(float(log["fat"] or 0) for log in logs)
 
-    total_fiber = sum(float(log["fiber"] or 0) for log in logs)
+    # ======================================================
+    # Convert Rows
+    # ======================================================
+
+    meals = [
+        dict(log)
+        for log in logs
+    ]
+
+
+    # ======================================================
+    # Today's Totals
+    # ======================================================
+
+    total_calories = sum(
+
+        float(
+            meal["calories"] or 0
+        )
+
+        for meal in meals
+
+    )
+
+
+    total_protein = sum(
+
+        float(
+            meal["protein"] or 0
+        )
+
+        for meal in meals
+
+    )
+
+
+    total_carbs = sum(
+
+        float(
+            meal["carbs"] or 0
+        )
+
+        for meal in meals
+
+    )
+
+
+    total_fat = sum(
+
+        float(
+            meal["fat"] or 0
+        )
+
+        for meal in meals
+
+    )
+
+
+    total_fiber = sum(
+
+        float(
+            meal["fiber"] or 0
+        )
+
+        for meal in meals
+
+    )
+
+
+    # ======================================================
+    # Remaining Calories
+    # ======================================================
 
     remaining_calories = max(
+
         0,
-        user["daily_calories"] - total_calories
+
+        float(
+            user["daily_calories"] or 0
+        )
+        - total_calories
+
     )
+
+
+    # ======================================================
+    # Response
+    # ======================================================
 
     return {
 
         "success": True,
 
-        "daily_target": user["daily_calories"],
 
-        "consumed_calories": total_calories,
+        # --------------------------------------------------
+        # Daily Targets
+        # --------------------------------------------------
 
-        "remaining_calories": remaining_calories,
+        "daily_target":
+            float(
+                user["daily_calories"] or 0
+            ),
 
-        "target_protein": float(user["daily_protein"] or 0),
+        "target_protein":
+            float(
+                user["daily_protein"] or 0
+            ),
 
-        "consumed_protein": total_protein,
+        "target_carbs":
+            float(
+                user["daily_carbs"] or 0
+            ),
 
-        "target_carbs": float(user["daily_carbs"] or 0),
+        "target_fat":
+            float(
+                user["daily_fat"] or 0
+            ),
 
-        "consumed_carbs": total_carbs,
+        "target_fiber":
+            float(
+                user["daily_fiber"] or 0
+            ),
 
-        "target_fat": float(user["daily_fat"] or 0),
 
-        "consumed_fat": total_fat,
+        # --------------------------------------------------
+        # Consumed
+        # --------------------------------------------------
 
-        "target_fiber": float(user["daily_fiber"] or 0),
+        "consumed_calories":
+            total_calories,
 
-        "consumed_fiber": total_fiber,
+        "consumed_protein":
+            total_protein,
 
-        "total_meals": len(logs),
+        "consumed_carbs":
+            total_carbs,
 
-        "meals": logs
+        "consumed_fat":
+            total_fat,
+
+        "consumed_fiber":
+            total_fiber,
+
+
+        # --------------------------------------------------
+        # Remaining
+        # --------------------------------------------------
+
+        "remaining_calories":
+            remaining_calories,
+
+
+        # --------------------------------------------------
+        # Meal Count
+        # --------------------------------------------------
+
+        "total_meals":
+            len(meals),
+
+
+        # --------------------------------------------------
+        # Individual Meals
+        # --------------------------------------------------
+
+        "meals":
+            meals
 
     }

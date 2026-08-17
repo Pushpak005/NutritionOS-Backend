@@ -1,4 +1,5 @@
 from sqlalchemy import text
+
 from app.database import engine
 
 
@@ -7,43 +8,61 @@ def get_my_meals(user_id: int):
     with engine.connect() as conn:
 
         result = conn.execute(
+
             text("""
                 SELECT
 
-                    m.id,
+                    ml.id,
+
+                    ml.dish_id,
 
                     mi.dish_name,
 
-                    m.meal_type,
+                    ml.meal_type,
 
-                    m.quantity,
+                    ml.quantity,
 
-                    mi.calories,
+                    ml.calories,
 
-                    mi.protein,
+                    ml.protein,
 
-                    mi.carbs,
+                    ml.carbs,
 
-                    mi.fat,
+                    ml.fat,
 
-                    mi.fiber,
+                    ml.fiber,
 
-                    m.created_at
+                    ml.source,
 
-                FROM meals m
+                    ml.status,
+
+                    ml.eaten_at
+
+                FROM meal_logs ml
 
                 JOIN menu_items mi
 
-                ON m.menu_item_id = mi.id
+                    ON ml.dish_id = mi.id
 
-                WHERE m.user_id = :user_id
+                WHERE
 
-                ORDER BY m.created_at DESC
+                    ml.user_id = :user_id
+
+                    AND DATE(ml.eaten_at) = CURRENT_DATE
+
+                ORDER BY
+
+                    ml.eaten_at DESC
 
             """),
+
             {
                 "user_id": user_id
             }
+
         ).fetchall()
 
-    return [dict(row._mapping) for row in result]
+    return [
+        dict(row._mapping)
+        for row in result
+    ]
