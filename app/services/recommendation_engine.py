@@ -173,12 +173,12 @@ def _calculate_protein_score(
     protein: float
 ) -> float:
 
-    remaining = user.get(
-        "remaining"
-    ) or {}
+    nutrition_state = user.get("nutrition_state")
 
     remaining_protein = _number(
-        remaining.get("protein")
+        nutrition_state.remaining_protein
+        if nutrition_state
+        else 0
     )
 
     goal = _text(
