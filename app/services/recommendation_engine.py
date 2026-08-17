@@ -963,16 +963,20 @@ def get_recommendation_reasons(
         user.get("goal")
     )
 
-    remaining = user.get(
-        "remaining"
-    ) or {}
+    nutrition_state = user.get(
+        "nutrition_state"
+    )
 
     remaining_protein = _number(
-        remaining.get("protein")
+        nutrition_state.remaining_protein
+        if nutrition_state
+        else 0
     )
 
     remaining_calories = _number(
-        remaining.get("calories")
+        nutrition_state.remaining_calories
+        if nutrition_state
+        else 0
     )
 
     protein = _number(
