@@ -11,6 +11,14 @@ from app.services.meal_engine import (
     get_meal_target_calories
 )
 
+from app.core.policies.nutrition_policy import (
+    can_recommend_full_meal
+)
+
+from app.core.state.nutrition_state import (
+    NutritionState
+)
+
 
 # ==========================================
 # Build Ranked Recommendation List
@@ -34,27 +42,33 @@ def _get_scored_recommendations(user: dict):
     )
 
     # ==========================================
-    # Nutrition Completion Guard
-    #
-    # If the user has essentially completed
-    # today's calorie target and has already
-    # reached the protein target, do not
-    # recommend another normal full meal.
+    # Nutrition Completion Policy
     # ==========================================
 
     remaining = user.get("remaining", {})
 
-    remaining_calories = float(
-        remaining.get("calories", 0) or 0
+    nutrition_state = NutritionState(
+        remaining_calories=float(
+            remaining.get("calories", 0) or 0
+        ),
+        remaining_protein=float(
+            remaining.get("protein", 0) or 0
+        ),
+        remaining_carbs=float(
+            remaining.get("carbs", 0) or 0
+        ),
+        remaining_fat=float(
+            remaining.get("fat", 0) or 0
+        ),
+        remaining_fiber=float(
+            remaining.get("fiber", 0) or 0
+        ),
+        meal_window=meal_window,
+        goal=user.get("goal", "")
     )
 
-    remaining_protein = float(
-        remaining.get("protein", 0) or 0
-    )
-
-    if (
-        remaining_calories <= 100
-        and remaining_protein <= 0
+    if not can_recommend_full_meal(
+        nutrition_state
     ):
         return []
 
