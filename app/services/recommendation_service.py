@@ -24,10 +24,13 @@ def _get_scored_recommendations(user: dict):
     # Dashboard AI Pick
     # Currently based on Lunch
     # ==========================================
-
+    meal_window = (
+        user.get("meal_window")
+        or "Lunch"
+    )
     user["meal_target_calories"] = get_meal_target_calories(
         user["daily_calories"],
-        "Lunch"
+        meal_window
     )
 
     # ==========================================
