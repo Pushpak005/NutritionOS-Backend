@@ -16,7 +16,7 @@ from app.core.policies.nutrition_policy import (
 )
 
 from app.core.state.nutrition_state import (
-    NutritionState
+    build_nutrition_state
 )
 
 
@@ -36,6 +36,7 @@ def _get_scored_recommendations(user: dict):
         user.get("meal_window")
         or "Lunch"
     )
+
     user["meal_target_calories"] = get_meal_target_calories(
         user["daily_calories"],
         meal_window
@@ -45,26 +46,8 @@ def _get_scored_recommendations(user: dict):
     # Nutrition Completion Policy
     # ==========================================
 
-    remaining = user.get("remaining", {})
-
-    nutrition_state = NutritionState(
-        remaining_calories=float(
-            remaining.get("calories", 0) or 0
-        ),
-        remaining_protein=float(
-            remaining.get("protein", 0) or 0
-        ),
-        remaining_carbs=float(
-            remaining.get("carbs", 0) or 0
-        ),
-        remaining_fat=float(
-            remaining.get("fat", 0) or 0
-        ),
-        remaining_fiber=float(
-            remaining.get("fiber", 0) or 0
-        ),
-        meal_window=meal_window,
-        goal=user.get("goal", "")
+    nutrition_state = build_nutrition_state(
+        user["core_context"]
     )
 
     if not can_recommend_full_meal(
