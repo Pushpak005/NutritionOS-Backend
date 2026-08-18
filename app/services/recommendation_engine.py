@@ -1,3 +1,4 @@
+import math
 from typing import Dict
 
 
@@ -113,28 +114,32 @@ def _calculate_calorie_score(
 ) -> float:
 
     if target_calories <= 0 or calories <= 0:
-
         return 0.0
 
     difference = abs(
         calories - target_calories
     )
 
-    # ------------------------------------------------------
-    # Scale relative to meal target.
+    # Smooth Gaussian-style calorie fit.
     #
-    # 20% of target is treated as a meaningful deviation.
-    # ------------------------------------------------------
+    # 20 points at the exact target.
+    # The score decreases smoothly as the dish
+    # moves away from the meal calorie target.
+    #
+    # Scale is proportional to the target so that
+    # the behaviour remains consistent across
+    # different meal sizes.
 
-    tolerance = max(
-        target_calories * 0.20,
-        100.0
+    scale = max(
+        target_calories * 0.35,
+        150.0
     )
 
-    score = 20.0 * (
-        1.0
-        -
-        (difference / tolerance)
+    score = 20.0 * math.exp(
+        -0.5 *
+        (
+            difference / scale
+        ) ** 2
     )
 
     return _clamp(
@@ -143,30 +148,6 @@ def _calculate_calorie_score(
         20.0
     )
 
-
-# ==========================================================
-# Protein Fit — 25 Points
-# ==========================================================
-#
-# Protein should help close the remaining protein gap.
-#
-# Ideal behaviour:
-#
-#     25-40% of remaining gap
-#         -> useful
-#
-#     40-80%
-#         -> strong
-#
-#     80-100%
-#         -> very strong
-#
-#     >100%
-#         -> still useful, but diminishing return
-#
-# We deliberately avoid giving automatic maximum points
-# merely because protein is above a threshold.
-# ==========================================================
 
 def _calculate_protein_score(
     user: Dict,
