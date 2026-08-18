@@ -22,11 +22,11 @@ from app.core.policies.action_policy import (
 
 def _normalize_meal_window(
     meal_window: str
-) -> str:
+) -> str | None:
 
     if not meal_window:
 
-        return "Lunch"
+        return None
 
     normalized = str(
         meal_window
@@ -52,8 +52,7 @@ def _normalize_meal_window(
     }
 
     return meal_windows.get(
-        normalized,
-        "Lunch"
+        normalized
     )
 
 
@@ -106,21 +105,19 @@ def _get_scored_recommendations(
         user.get("meal_window")
     )
 
-    user["meal_window"] = meal_window
-
     # ==========================================
-    # Late Night Safety Guard
+    # Invalid / Missing Meal Context
     #
-    # There is currently no dedicated
-    # Late Night menu category.
-    #
-    # Never silently convert Late Night
-    # into another meal.
+    # Never silently default to Lunch.
+    # The ContextFactory is responsible for
+    # providing a valid current meal window.
     # ==========================================
 
-    if meal_window == "Late Night":
+    if meal_window is None:
 
         return []
+
+    user["meal_window"] = meal_window
 
     # ==========================================
     # Meal-Specific Calorie Target
