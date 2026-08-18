@@ -11,16 +11,8 @@ from app.services.meal_engine import (
     get_meal_target_calories
 )
 
-from app.core.policies.nutrition_policy import (
-    can_recommend_full_meal
-)
-
-from app.core.policies.meal_policy import (
-    can_recommend_current_meal
-)
-
-from app.core.state.nutrition_state import (
-    build_nutrition_state
+from app.core.policies.action_policy import (
+    can_recommend_meal
 )
 
 
@@ -76,14 +68,20 @@ def _get_scored_recommendations(
     user = dict(user)
 
     # ==========================================
-    # Meal Policy
+    # Centralized Action Policy
     #
-    # This decision happens BEFORE the
-    # recommendation engine performs any
-    # dish scoring.
+    # The action policy owns the complete
+    # deterministic decision of whether a
+    # normal meal recommendation is allowed.
     #
-    # The policy decides whether the current
-    # meal window is eligible at all.
+    # It internally evaluates:
+    #
+    # - current meal policy
+    # - nutrition completion policy
+    #
+    # Recommendation service therefore does
+    # not directly orchestrate individual
+    # business policies.
     # ==========================================
 
     core_context = user.get(
@@ -92,7 +90,7 @@ def _get_scored_recommendations(
 
     if core_context is not None:
 
-        if not can_recommend_current_meal(
+        if not can_recommend_meal(
             core_context
         ):
 
@@ -134,26 +132,26 @@ def _get_scored_recommendations(
     )
 
     # ==========================================
-    # Nutrition Completion Policy
-    # ==========================================
-
-    nutrition_state = build_nutrition_state(
-        core_context
-    )
-
-    # ==========================================
     # Centralized Nutrition State
+    #
+    # Nutrition state is already prepared by
+    # the action policy and recommendation
+    # context flow.
+    #
+    # Keep the existing state assignment so
+    # downstream scoring and explanations can
+    # continue consuming nutrition_state.
     # ==========================================
 
-    user["nutrition_state"] = (
-        nutrition_state
+    nutrition_state = user.get(
+        "nutrition_state"
     )
 
-    if not can_recommend_full_meal(
-        nutrition_state
-    ):
+    if nutrition_state is not None:
 
-        return []
+        user["nutrition_state"] = (
+            nutrition_state
+        )
 
     # ==========================================
     # Load Available Dishes
