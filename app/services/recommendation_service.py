@@ -1,4 +1,4 @@
-from sqlalchemy import text
+﻿from sqlalchemy import text
 
 from app.database import engine
 
@@ -21,25 +21,62 @@ from app.core.state.nutrition_state import (
 
 
 # ==========================================
+# Normalize Meal Window
+# ==========================================
+
+def _normalize_meal_window(
+    meal_window: str
+) -> str:
+
+    if not meal_window:
+        return "Lunch"
+
+    normalized = str(
+        meal_window
+    ).strip().lower()
+
+    meal_windows = {
+        "breakfast": "Breakfast",
+        "lunch": "Lunch",
+        "dinner": "Dinner",
+        "snack": "Snack"
+    }
+
+    return meal_windows.get(
+        normalized,
+        "Lunch"
+    )
+
+
+# ==========================================
 # Build Ranked Recommendation List
 # ==========================================
 
-def _get_scored_recommendations(user: dict):
+def _get_scored_recommendations(
+    user: dict
+):
 
     user = dict(user)
 
     # ==========================================
-    # Dashboard AI Pick
-    # Currently based on Lunch
+    # Dashboard Meal Window
     # ==========================================
-    meal_window = (
+
+    meal_window = _normalize_meal_window(
         user.get("meal_window")
-        or "Lunch"
     )
 
-    user["meal_target_calories"] = get_meal_target_calories(
-        user["daily_calories"],
-        meal_window
+    user["meal_window"] = meal_window
+
+    # ==========================================
+    # Meal-Specific Calorie Target
+    # ==========================================
+
+    user["meal_target_calories"] = (
+        get_meal_target_calories(
+            user["daily_calories"],
+            meal_window
+        )
     )
 
     # ==========================================
@@ -50,8 +87,8 @@ def _get_scored_recommendations(user: dict):
         user["core_context"]
     )
 
-    # Make centralized nutrition state available
-    # to the recommendation layer.
+    # Make centralized nutrition state
+    # available to the recommendation layer.
     user["nutrition_state"] = nutrition_state
 
     if not can_recommend_full_meal(
@@ -100,14 +137,24 @@ def _get_scored_recommendations(user: dict):
 
                     m.available = TRUE
 
-            """)
+                    AND LOWER(
+                        m.meal_type
+                    ) = LOWER(
+                        :meal_window
+                    )
+
+            """),
+
+            {
+                "meal_window": meal_window
+            }
 
         ).mappings().all()
 
     recommendations = []
 
     # ==========================================
-    # Score Every Dish
+    # Score Eligible Dishes
     # ==========================================
 
     for dish in dishes:
@@ -129,7 +176,6 @@ def _get_scored_recommendations(user: dict):
             not dish["is_veg"]
 
         ):
-
             continue
 
         # ==========================================
@@ -184,7 +230,9 @@ def _get_scored_recommendations(user: dict):
 # Today's Best AI Pick
 # ==========================================
 
-def get_best_recommendation(user: dict):
+def get_best_recommendation(
+    user: dict
+):
 
     recommendations = _get_scored_recommendations(
         user
