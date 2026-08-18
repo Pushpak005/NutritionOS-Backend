@@ -1,3 +1,5 @@
+﻿from dataclasses import dataclass
+
 from app.core.context.models import Context
 from app.core.policies.meal_policy import (
     can_recommend_current_meal
@@ -7,6 +9,39 @@ from app.core.policies.nutrition_policy import (
 )
 from app.core.state.nutrition_state import (
     build_nutrition_state
+)
+
+
+# ==========================================
+# NutritionOS Action Decision
+# ==========================================
+
+
+@dataclass(frozen=True)
+class ActionDecision:
+
+    allowed: bool
+    reason: str
+
+
+# ==========================================
+# Decision Reasons
+# ==========================================
+
+ACTION_ALLOWED = (
+    "MEAL_RECOMMENDATION_ALLOWED"
+)
+
+ACTION_BLOCKED_NO_CONTEXT = (
+    "NO_CONTEXT"
+)
+
+ACTION_BLOCKED_MEAL = (
+    "CURRENT_MEAL_NOT_ELIGIBLE"
+)
+
+ACTION_BLOCKED_NUTRITION = (
+    "NUTRITION_TARGET_COMPLETED"
 )
 
 
@@ -30,9 +65,9 @@ from app.core.state.nutrition_state import (
 # ==========================================
 
 
-def can_recommend_meal(
+def evaluate_meal_action(
     context: Context
-) -> bool:
+) -> ActionDecision:
 
     # ==========================================
     # Safety: Context Required
@@ -40,7 +75,10 @@ def can_recommend_meal(
 
     if context is None:
 
-        return False
+        return ActionDecision(
+            allowed=False,
+            reason=ACTION_BLOCKED_NO_CONTEXT
+        )
 
     # ==========================================
     # Meal Policy
@@ -57,7 +95,10 @@ def can_recommend_meal(
         context
     ):
 
-        return False
+        return ActionDecision(
+            allowed=False,
+            reason=ACTION_BLOCKED_MEAL
+        )
 
     # ==========================================
     # Build Central Nutrition State
@@ -84,10 +125,30 @@ def can_recommend_meal(
         nutrition_state
     ):
 
-        return False
+        return ActionDecision(
+            allowed=False,
+            reason=ACTION_BLOCKED_NUTRITION
+        )
 
     # ==========================================
     # All deterministic policies passed.
     # ==========================================
 
-    return True
+    return ActionDecision(
+        allowed=True,
+        reason=ACTION_ALLOWED
+    )
+
+
+# ==========================================
+# Backward-Compatible Boolean Gateway
+# ==========================================
+
+
+def can_recommend_meal(
+    context: Context
+) -> bool:
+
+    return evaluate_meal_action(
+        context
+    ).allowed
