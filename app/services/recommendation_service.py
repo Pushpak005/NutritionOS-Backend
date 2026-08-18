@@ -1,4 +1,4 @@
-﻿from sqlalchemy import text
+from sqlalchemy import text
 
 from app.database import engine
 
@@ -293,8 +293,48 @@ def _get_scored_recommendations(
 
     recommendations.sort(
 
-        key=lambda x:
+        key=lambda x: (
+
             x["score"],
+
+            float(
+                x.get(
+                    "healthy_score",
+                    0
+                ) or 0
+            ),
+
+            float(
+                x.get(
+                    "protein",
+                    0
+                ) or 0
+            ),
+
+            -abs(
+                float(
+                    x.get(
+                        "calories",
+                        0
+                    ) or 0
+                )
+                -
+                float(
+                    user.get(
+                        "meal_target_calories",
+                        0
+                    ) or 0
+                )
+            ),
+
+            -float(
+                x.get(
+                    "price",
+                    0
+                ) or 0
+            )
+
+        ),
 
         reverse=True
 
