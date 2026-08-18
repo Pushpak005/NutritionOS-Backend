@@ -12,7 +12,7 @@ from app.services.meal_engine import (
 )
 
 from app.core.policies.action_policy import (
-    can_recommend_meal
+    evaluate_meal_action
 )
 
 
@@ -90,9 +90,11 @@ def _get_scored_recommendations(
 
     if core_context is not None:
 
-        if not can_recommend_meal(
+        action_decision = evaluate_meal_action(
             core_context
-        ):
+        )
+
+        if not action_decision.allowed:
 
             return []
 
