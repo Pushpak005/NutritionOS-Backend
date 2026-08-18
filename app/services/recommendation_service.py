@@ -15,6 +15,10 @@ from app.core.policies.nutrition_policy import (
     can_recommend_full_meal
 )
 
+from app.core.policies.meal_policy import (
+    can_recommend_current_meal
+)
+
 from app.core.state.nutrition_state import (
     build_nutrition_state
 )
@@ -29,6 +33,7 @@ def _normalize_meal_window(
 ) -> str:
 
     if not meal_window:
+
         return "Lunch"
 
     normalized = str(
@@ -36,10 +41,22 @@ def _normalize_meal_window(
     ).strip().lower()
 
     meal_windows = {
-        "breakfast": "Breakfast",
-        "lunch": "Lunch",
-        "dinner": "Dinner",
-        "snack": "Snack"
+
+        "breakfast":
+            "Breakfast",
+
+        "lunch":
+            "Lunch",
+
+        "dinner":
+            "Dinner",
+
+        "snack":
+            "Snack",
+
+        "late night":
+            "Late Night"
+
     }
 
     return meal_windows.get(
@@ -59,6 +76,29 @@ def _get_scored_recommendations(
     user = dict(user)
 
     # ==========================================
+    # Meal Policy
+    #
+    # This decision happens BEFORE the
+    # recommendation engine performs any
+    # dish scoring.
+    #
+    # The policy decides whether the current
+    # meal window is eligible at all.
+    # ==========================================
+
+    core_context = user.get(
+        "core_context"
+    )
+
+    if core_context is not None:
+
+        if not can_recommend_current_meal(
+            core_context
+        ):
+
+            return []
+
+    # ==========================================
     # Dashboard Meal Window
     # ==========================================
 
@@ -67,6 +107,20 @@ def _get_scored_recommendations(
     )
 
     user["meal_window"] = meal_window
+
+    # ==========================================
+    # Late Night Safety Guard
+    #
+    # There is currently no dedicated
+    # Late Night menu category.
+    #
+    # Never silently convert Late Night
+    # into another meal.
+    # ==========================================
+
+    if meal_window == "Late Night":
+
+        return []
 
     # ==========================================
     # Meal-Specific Calorie Target
@@ -84,16 +138,21 @@ def _get_scored_recommendations(
     # ==========================================
 
     nutrition_state = build_nutrition_state(
-        user["core_context"]
+        core_context
     )
 
-    # Make centralized nutrition state
-    # available to the recommendation layer.
-    user["nutrition_state"] = nutrition_state
+    # ==========================================
+    # Centralized Nutrition State
+    # ==========================================
+
+    user["nutrition_state"] = (
+        nutrition_state
+    )
 
     if not can_recommend_full_meal(
         nutrition_state
     ):
+
         return []
 
     # ==========================================
@@ -131,7 +190,8 @@ def _get_scored_recommendations(
 
                 JOIN restaurants r
 
-                    ON r.restaurant_id = m.restaurant_id
+                    ON r.restaurant_id =
+                       m.restaurant_id
 
                 WHERE
 
@@ -146,7 +206,8 @@ def _get_scored_recommendations(
             """),
 
             {
-                "meal_window": meal_window
+                "meal_window":
+                    meal_window
             }
 
         ).mappings().all()
@@ -165,17 +226,24 @@ def _get_scored_recommendations(
 
         if (
 
-            user.get("diet_preferences")
+            user.get(
+                "diet_preferences"
+            )
 
             and
 
-            user["diet_preferences"].lower() == "veg"
+            user[
+                "diet_preferences"
+            ].lower() == "veg"
 
             and
 
-            not dish["is_veg"]
+            not dish[
+                "is_veg"
+            ]
 
         ):
+
             continue
 
         # ==========================================
@@ -191,24 +259,32 @@ def _get_scored_recommendations(
         # Dynamic AI Explanation
         # ==========================================
 
-        why_recommended = get_recommendation_reasons(
-            user,
-            dish
+        why_recommended = (
+            get_recommendation_reasons(
+                user,
+                dish
+            )
         )
 
         # ==========================================
         # Build Recommendation
         # ==========================================
 
-        recommendation = dict(dish)
-
-        recommendation["score"] = score
-
-        recommendation["match_percentage"] = score
-
-        recommendation["why_recommended"] = (
-            why_recommended
+        recommendation = dict(
+            dish
         )
+
+        recommendation[
+            "score"
+        ] = score
+
+        recommendation[
+            "match_percentage"
+        ] = score
+
+        recommendation[
+            "why_recommended"
+        ] = why_recommended
 
         recommendations.append(
             recommendation
@@ -219,8 +295,12 @@ def _get_scored_recommendations(
     # ==========================================
 
     recommendations.sort(
-        key=lambda x: x["score"],
+
+        key=lambda x:
+            x["score"],
+
         reverse=True
+
     )
 
     return recommendations
@@ -234,11 +314,14 @@ def get_best_recommendation(
     user: dict
 ):
 
-    recommendations = _get_scored_recommendations(
-        user
+    recommendations = (
+        _get_scored_recommendations(
+            user
+        )
     )
 
     if not recommendations:
+
         return None
 
     return recommendations[0]
@@ -253,8 +336,12 @@ def get_top_recommendations(
     limit: int = 5
 ):
 
-    recommendations = _get_scored_recommendations(
-        user
+    recommendations = (
+        _get_scored_recommendations(
+            user
+        )
     )
 
-    return recommendations[:limit]
+    return recommendations[
+        :limit
+    ]
