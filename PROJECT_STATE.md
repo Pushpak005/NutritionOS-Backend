@@ -137,15 +137,23 @@ After D:
 
 ## 6. IMMEDIATE NEXT TASK
 
-**Make meal window a real input to recommendation decisions.**
+**Complete meal-window-aware recommendation decisions.**
 
-The live recommendation flow must correctly handle:
+Make the live recommendation flow correctly use:
 
-**Breakfast / Lunch / Snack / Dinner**
+Breakfast / Lunch / Snack / Dinner
 
-Then verify that the centralized `NutritionState` is used throughout recommendation scoring and policy.
+The meal window must influence:
+- meal calorie target
+- eligible dishes
+- recommendation ranking
 
-Do not add random features or database fields unless the current task requires them.
+Then verify that one centralized NutritionState is used throughout policy and recommendation scoring.
+
+Do not add unnecessary database fields.
+
+After completion:
+Verify → update this file → commit → push GitHub.
 
 ---
 
