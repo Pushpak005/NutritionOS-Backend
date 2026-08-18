@@ -500,10 +500,173 @@ def _calculate_healthy_score(
 
 
 # ==========================================================
+# Meal Window Macro Allocation
+# ==========================================================
+#
+# The meal window determines how much of the user's daily
+# nutrition target is appropriate for the current meal.
+#
+# The target is then capped by the nutrition still remaining
+# today. This prevents the ranking layer from asking for more
+# of a nutrient than the user actually has left.
+# ==========================================================
+
+_MEAL_WINDOW_SHARES = {
+
+    "breakfast": 0.25,
+    "lunch": 0.35,
+    "snack": 0.10,
+    "dinner": 0.30
+
+}
+
+
+def _get_meal_window(
+    user: Dict
+) -> str:
+
+    nutrition_state = user.get(
+        "nutrition_state"
+    )
+
+    meal_window = user.get(
+        "meal_window"
+    )
+
+    if not meal_window and nutrition_state:
+
+        meal_window = getattr(
+            nutrition_state,
+            "meal_window",
+            None
+        )
+
+    return _text(
+        meal_window
+    )
+
+
+def _get_meal_window_share(
+    user: Dict
+) -> float:
+
+    return _MEAL_WINDOW_SHARES.get(
+        _get_meal_window(user),
+        0.0
+    )
+
+
+def _get_meal_macro_target(
+    user: Dict,
+    daily_field: str,
+    remaining_field: str
+) -> float:
+
+    meal_share = _get_meal_window_share(
+        user
+    )
+
+    if meal_share <= 0:
+
+        return 0.0
+
+    daily_target = _number(
+        user.get(
+            daily_field
+        )
+    )
+
+    nutrition_state = user.get(
+        "nutrition_state"
+    )
+
+    remaining = _number(
+        getattr(
+            nutrition_state,
+            remaining_field,
+            0
+        )
+        if nutrition_state
+        else 0
+    )
+
+    if daily_target <= 0:
+
+        return 0.0
+
+    planned = daily_target * meal_share
+
+    if remaining <= 0:
+
+        return 0.0
+
+    return min(
+        planned,
+        remaining
+    )
+
+
+def _calculate_positive_nutrient_fit(
+    value: float,
+    target: float,
+    maximum: float
+) -> float:
+
+    if target <= 0 or value <= 0:
+
+        return 0.0
+
+    ratio = value / target
+
+    if ratio <= 1.0:
+
+        return maximum * ratio
+
+    # Full credit once the meal target is covered, with
+    # diminishing returns for substantially larger portions.
+    excess = ratio - 1.0
+
+    return maximum * _clamp(
+        1.0 - (excess * 0.35),
+        0.35,
+        1.0
+    )
+
+
+def _calculate_balanced_nutrient_fit(
+    value: float,
+    target: float,
+    maximum: float
+) -> float:
+
+    if target <= 0:
+
+        return 0.0
+
+    ratio = value / target
+
+    difference = abs(
+        ratio - 1.0
+    )
+
+    # Smoothly rewards proximity to the meal-window target.
+    return maximum * math.exp(
+        -0.5 *
+        (difference / 0.75) ** 2
+    )
+
+
+# ==========================================================
 # Macro / Fiber Balance — 10 Points
 # ==========================================================
 #
-# Continuous rather than threshold-based.
+# Meal-window-aware and remaining-state-aware.
+#
+# Points:
+#     Protein = 3
+#     Fiber   = 3
+#     Fat     = 2
+#     Carbs   = 2
 # ==========================================================
 
 def _calculate_macro_score(
@@ -527,79 +690,51 @@ def _calculate_macro_score(
         dish.get("carbs")
     )
 
-    goal = _text(
-        user.get("goal")
+    protein_target = _get_meal_macro_target(
+        user,
+        "daily_protein",
+        "remaining_protein"
     )
 
-    # ------------------------------------------------------
-    # Protein
-    # ------------------------------------------------------
+    fiber_target = _get_meal_macro_target(
+        user,
+        "daily_fiber",
+        "remaining_fiber"
+    )
 
-    protein_score = _clamp(
-        protein / 30.0,
-        0.0,
-        1.0
-    ) * 3.0
+    fat_target = _get_meal_macro_target(
+        user,
+        "daily_fat",
+        "remaining_fat"
+    )
 
-    # ------------------------------------------------------
-    # Fiber
-    # ------------------------------------------------------
+    carbs_target = _get_meal_macro_target(
+        user,
+        "daily_carbs",
+        "remaining_carbs"
+    )
 
-    fiber_score = _clamp(
-        fiber / 10.0,
-        0.0,
-        1.0
-    ) * 3.0
+    protein_score = _calculate_positive_nutrient_fit(
+        protein,
+        protein_target,
+        3.0
+    )
 
-    # ------------------------------------------------------
-    # Fat
-    # ------------------------------------------------------
+    fiber_score = _calculate_positive_nutrient_fit(
+        fiber,
+        fiber_target,
+        3.0
+    )
 
-    if fat <= 15:
+    fat_score = _calculate_balanced_nutrient_fit(
+        fat,
+        fat_target,
+        2.0
+    )
 
-        fat_score = 2.0
-
-    else:
-
-        fat_score = _clamp(
-            2.0 -
-            (
-                (fat - 15.0) /
-                15.0
-            ) * 2.0,
-            0.0,
-            2.0
-        )
-
-    # ------------------------------------------------------
-    # Carbohydrate Fit
-    # ------------------------------------------------------
-
-    if goal in (
-        "muscle gain",
-        "weight gain"
-    ):
-
-        ideal_carbs = 60.0
-
-    elif goal == "weight loss":
-
-        ideal_carbs = 45.0
-
-    else:
-
-        ideal_carbs = 55.0
-
-    carb_score = _clamp(
-        2.0 -
-        (
-            abs(
-                carbs -
-                ideal_carbs
-            ) /
-            50.0
-        ) * 2.0,
-        0.0,
+    carb_score = _calculate_balanced_nutrient_fit(
+        carbs,
+        carbs_target,
         2.0
     )
 
