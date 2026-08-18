@@ -4,6 +4,10 @@ from app.database import engine
 
 from app.core.core_service import CoreService
 
+from app.core.policies.action_policy import (
+    evaluate_meal_action
+)
+
 from app.services.recommendation_service import (
     get_best_recommendation,
     get_top_recommendations
@@ -33,6 +37,23 @@ def get_dashboard(user_id: int):
 
     context = core_service.get_context(
         user_id
+    )
+
+    # ==========================================
+    # Action Decision
+    #
+    # ActionPolicy is the single deterministic
+    # gateway for deciding whether a normal
+    # meal recommendation is currently allowed.
+    #
+    # The dashboard now exposes this decision
+    # to the frontend instead of forcing the
+    # frontend to infer blocked states from
+    # null/empty recommendations.
+    # ==========================================
+
+    action_decision = evaluate_meal_action(
+        context
     )
 
     with engine.connect() as conn:
@@ -210,9 +231,11 @@ def get_dashboard(user_id: int):
 
             **profile,
 
-            "consumed": totals,
+            "consumed":
+                totals,
 
-            "remaining": remaining,
+            "remaining":
+                remaining,
 
             "meal_window":
                 context.meal_window,
@@ -252,6 +275,16 @@ def get_dashboard(user_id: int):
 
             "nutrition_complete":
                 nutrition_complete,
+
+            "action_state": {
+
+                "allowed":
+                    action_decision.allowed,
+
+                "reason":
+                    action_decision.reason
+
+            },
 
             "today_ai_pick":
                 today_ai_pick,
