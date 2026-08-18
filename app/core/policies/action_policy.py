@@ -1,0 +1,93 @@
+from app.core.context.models import Context
+from app.core.policies.meal_policy import (
+    can_recommend_current_meal
+)
+from app.core.policies.nutrition_policy import (
+    can_recommend_full_meal
+)
+from app.core.state.nutrition_state import (
+    build_nutrition_state
+)
+
+
+# ==========================================
+# NutritionOS Action Policy
+# ==========================================
+#
+# This is the single deterministic gateway
+# for deciding whether a normal meal
+# recommendation action is currently allowed.
+#
+# The policy layer answers:
+#
+# "Should NutritionOS recommend a normal
+#  full meal right now?"
+#
+# It does NOT decide which dish is best.
+#
+# Ranking remains the responsibility of the
+# recommendation engine.
+# ==========================================
+
+
+def can_recommend_meal(
+    context: Context
+) -> bool:
+
+    # ==========================================
+    # Safety: Context Required
+    # ==========================================
+
+    if context is None:
+
+        return False
+
+    # ==========================================
+    # Meal Policy
+    #
+    # Checks:
+    #
+    # - current meal window
+    # - late-night restriction
+    # - whether the current meal has already
+    #   been logged
+    # ==========================================
+
+    if not can_recommend_current_meal(
+        context
+    ):
+
+        return False
+
+    # ==========================================
+    # Build Central Nutrition State
+    #
+    # The action policy consumes the same
+    # centralized NutritionState used by the
+    # recommendation layer.
+    # ==========================================
+
+    nutrition_state = (
+        build_nutrition_state(
+            context
+        )
+    )
+
+    # ==========================================
+    # Nutrition Policy
+    #
+    # Checks whether the user has effectively
+    # completed today's nutrition requirement.
+    # ==========================================
+
+    if not can_recommend_full_meal(
+        nutrition_state
+    ):
+
+        return False
+
+    # ==========================================
+    # All deterministic policies passed.
+    # ==========================================
+
+    return True
