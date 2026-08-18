@@ -1,6 +1,6 @@
 # NutritionOS — PROJECT SOURCE OF TRUTH
 
-**Baseline:** 17 August 2026  
+**Baseline:** 18 August 2026  
 **Status:** Active Development  
 **Product:** Autonomous Nutrition Operating System
 
@@ -8,210 +8,233 @@
 
 ## 1. WHAT NUTRITIONOS IS
 
-NutritionOS is a state-aware nutrition system.
+NutritionOS is a state-aware nutrition decision system.
 
 It should understand:
 
-**User → Targets → Meals → Current Nutrition State → Decision → Recommendation → User Action → Updated State**
+**User → Targets → Meals → Current Nutrition State → Context → Policy → Recommendation → User Action → Updated State**
 
-The recommendation must be based on the user's current nutrition state, not popularity alone.
+The recommendation must be based on the user's current nutrition state and constraints, not popularity alone.
+
+The long-term objective is to evolve this into an autonomous nutrition operating system that continuously updates its understanding of the user and makes increasingly context-aware nutrition decisions.
 
 ---
 
-## 2. CURRENT STACK
+# 2. SOURCE-OF-TRUTH RULE
 
-### Frontend
+When reasoning about NutritionOS, use this priority:
+
+1. Actual source code + verified runtime tests
+2. Current database state
+3. This PROJECT_STATE.md
+4. Historical project documents
+5. Future roadmap / ideas
+
+If documentation and code disagree:
+
+**Inspect the code and runtime first.**
+
+Never silently invent an implementation.
+
+Never describe planned functionality as implemented.
+
+---
+
+# 3. CURRENT STACK
+
+## Frontend
+
+Primary frontend:
+
+`C:\Users\Admin\NutritionOS-Frontend`
+
+Technology:
+
 - React
 - Vite
 - React Router
 - Axios
-- `C:\Users\Admin\NutritionOS-Frontend`
 
-### Backend
+Important service areas include:
+
+- dashboard service
+- meal service
+- my meals service
+- API client
+
+---
+
+## Backend
+
+Primary backend:
+
+`C:\Users\Admin\NutritionOS-Backend`
+
+Technology:
+
 - Python
 - FastAPI
 - SQLAlchemy
 - PostgreSQL / Supabase
-- `C:\Users\Admin\NutritionOS-Backend`
 
-### Core backend areas
+Important areas:
+
 - `app/core`
 - `app/services`
 - `app/routers`
 - `app/database`
+- `app/utils`
 
 ---
 
-## 3. CURRENTLY WORKING
+# 4. CURRENT ARCHITECTURE
 
-- User/profile nutrition targets
-- Meal logging and nutrition events
-- Today's consumed/remaining nutrition
-- `ContextFactory`
-- `NutritionState`
-- Meal-window calculation
-- Recommendation scoring
-- Nutrition completion guard
-- Diet filtering
-- Recommendation explanations
-- Dashboard AI Pick / Top AI Picks
-- Frontend dashboard
-- Menu/restaurant data
-- `meal_type` data including Breakfast, Lunch, Dinner and Snack
+The intended decision pipeline is:
 
-The dashboard has been runtime-tested and is currently rendering correctly.
-
----
-
-## 4. CURRENT ARCHITECTURE
-
-The intended decision flow is:
-
-**Database / Events**
+**Database / Nutrition Events**
 → **Context**
 → **NutritionState**
 → **Policy**
 → **Ranking**
 → **Explanation**
 → **User Action**
-→ **New Event**
+→ **New Nutrition Event**
+→ **Updated State**
 
-### Responsibilities
+### Context / State
 
-**Context / State**
-- What is true about the user right now?
+Answers:
 
-**Policy**
-- What is allowed / appropriate?
+> What is true about the user right now?
 
-**Ranking**
-- Which available dish is best?
+### Policy
 
-**Explanation**
-- Why was it selected?
+Answers:
 
-Deterministic nutrition logic remains authoritative. LLMs must not override nutrition constraints.
+> What is allowed or appropriate?
+
+### Ranking
+
+Answers:
+
+> Which available food option is best for the current state?
+
+### Explanation
+
+Answers:
+
+> Why was this recommendation selected?
+
+Deterministic nutrition logic remains authoritative.
+
+LLMs must not override deterministic nutrition constraints.
 
 ---
 
-## 5. CURRENT DEVELOPMENT FOCUS
+# 5. CURRENTLY WORKING / VERIFIED
 
-### A. Core Nutrition Decision System — CURRENT
-Unify:
-- Context
+The following capabilities are implemented and have been exercised through runtime/database tests:
+
+- User/profile nutrition data
+- Daily nutrition targets
+- Meal logging / nutrition events
+- Today's consumed nutrition
+- Remaining nutrition
+- ContextFactory
+- Core Context model
 - NutritionState
-- Meal Window
-- Policy
-- Recommendation
+- NutritionState builder
+- Meal-window calculation
+- Nutrition completion policy
+- Diet preference filtering
+- Recommendation scoring
+- Dynamic recommendation reasons
+- Dashboard AI Pick
+- Dashboard Top AI Picks
+- Menu and restaurant data
+- Meal-type-aware menu filtering
+- Continuous calorie-fit scoring
+- Breakfast / Lunch / Dinner / Snack menu data
 
-Make the live recommendation path use **one authoritative nutrition state**.
+The live recommendation path now uses the centralized nutrition state for important nutrition decisions.
 
-### B. Nutrition Intelligence
-After A:
-- better macro balancing
-- meal timing
-- adaptive nutrition targets
+---
 
-### C. Activity + Health
-After B:
+# 6. CURRENT CORE CONTEXT
+
+Current Context implementation:
+
+`app/core/context/models.py`
+
+Current Context carries:
+
+- user_id
+- goal
+- meal_window
+- remaining_calories
+- remaining_protein
+- remaining_carbs
+- remaining_fat
+- remaining_fiber
 - steps
-- workouts
-- calories burned
-- Health Connect / other providers
+- calories_burned
+- workout_today
+- breakfast_logged
+- lunch_logged
+- dinner_logged
+- health_connected
 
-### D. Autonomous System
-After C:
-- continuous state updates
-- adaptive recommendations
-- event-driven actions
-- proactive nutrition decisions
-
-### E. Conversational AI
-After D:
-- natural-language nutrition assistant
-- explanations
-- planning
-- adaptive interaction
+The Context is the central representation of the user's current state.
 
 ---
 
-## 6. IMMEDIATE NEXT TASK
+# 7. CURRENT NUTRITION STATE
 
-**Complete meal-window-aware recommendation decisions.**
+Current implementation:
 
-Make the live recommendation flow correctly use:
+`app/core/state/nutrition_state.py`
 
-Breakfast / Lunch / Snack / Dinner
+`NutritionState` represents:
 
-The meal window must influence:
-- meal calorie target
-- eligible dishes
-- recommendation ranking
+- remaining_calories
+- remaining_protein
+- remaining_carbs
+- remaining_fat
+- remaining_fiber
+- meal_window
+- goal
 
-Then verify that one centralized NutritionState is used throughout policy and recommendation scoring.
+It is constructed from the Core `Context`.
 
-Do not add unnecessary database fields.
+Current direction:
 
-After completion:
-Verify → update this file → commit → push GitHub.
+**Context → NutritionState → Policy / Recommendation**
 
----
-
-## 7. TEST CHECKPOINT
-
-Every major change should verify:
-
-1. Under target → recommendations appear
-2. Near target → appropriate options
-3. Completed target → no normal full-meal recommendation
-4. Protein deficient → protein-rich options rank higher
-5. Vegetarian → non-veg filtered
-6. Breakfast/Lunch/Snack/Dinner → correct meal-window behavior
+The recommendation layer receives this centralized state instead of independently reconstructing nutrition gaps.
 
 ---
 
-## 8. NON-NEGOTIABLES
+# 8. CURRENT NUTRITION CALCULATION
 
-- Do not hard-code dish recommendations.
-- Do not use popularity as the primary nutrition decision.
-- Do not let LLMs override deterministic nutrition rules.
-- Do not duplicate nutrition calculations unnecessarily.
-- Keep nutrition events state-changing.
-- Keep policy deterministic and explainable.
-- Keep providers replaceable.
-- Verify changes with real runtime/database tests.
-- Do not remove working behavior without checking callers.
-- Do not treat planned features as implemented.
+Today's nutrition state is derived from:
 
----
+- user's daily nutrition targets
+- today's `meal_logs`
 
-## 9. DEVELOPMENT RULE
+Conceptually:
 
-Work **one major task at a time**:
+```text
+remaining_calories =
+    daily_calories - consumed_calories
 
-**Inspect → Change → Test → Verify → Update this file → Push changes to GitHub → Move to next task.**
+remaining_protein =
+    daily_protein - consumed_protein
 
-After **every completed task**, we must:
-1. Verify the change with real runtime/database tests.
-2. Update this Source of Truth with the new status.
-3. Commit and **push the completed changes to GitHub**.
-4. Only then move to the next major task.
+remaining_carbs =
+    daily_carbs - consumed_carbs
 
-This Source of Truth itself must also be kept in GitHub and updated/pushed whenever its status changes.
+remaining_fat =
+    daily_fat - consumed_fat
 
-For code changes, provide the **complete replacement file** rather than partial snippets unless explicitly requested otherwise.
-
----
-
-## 10. SOURCE-OF-TRUTH RULE
-
-Priority:
-
-1. Actual source code + verified runtime
-2. Current database
-3. This file
-4. Historical documents
-5. Future ideas
-
-If documentation and code disagree, inspect and verify the code before changing architecture.
-
+remaining_fiber =
+    daily_fiber - consumed_fiber
