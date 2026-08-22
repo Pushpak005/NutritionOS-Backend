@@ -22,11 +22,13 @@ class ActionDecision:
 
     allowed: bool
     reason: str
+    nutrition_complete: bool
 
 
 # ==========================================
 # Decision Reasons
 # ==========================================
+
 
 ACTION_ALLOWED = (
     "MEAL_RECOMMENDATION_ALLOWED"
@@ -77,8 +79,40 @@ def evaluate_meal_action(
 
         return ActionDecision(
             allowed=False,
-            reason=ACTION_BLOCKED_NO_CONTEXT
+            reason=ACTION_BLOCKED_NO_CONTEXT,
+            nutrition_complete=False
         )
+
+    # ==========================================
+    # Build Central Nutrition State
+    #
+    # The same centralized NutritionState is
+    # used by the nutrition policy and the
+    # recommendation layer.
+    # ==========================================
+
+    nutrition_state = (
+        build_nutrition_state(
+            context
+        )
+    )
+
+    # ==========================================
+    # Nutrition Completion State
+    #
+    # IMPORTANT:
+    #
+    # Nutrition completion is owned by the
+    # nutrition policy.
+    #
+    # Do NOT duplicate the calorie/protein
+    # completion rule in dashboard or other
+    # service layers.
+    # ==========================================
+
+    nutrition_complete = not can_recommend_full_meal(
+        nutrition_state
+    )
 
     # ==========================================
     # Meal Policy
@@ -97,22 +131,9 @@ def evaluate_meal_action(
 
         return ActionDecision(
             allowed=False,
-            reason=ACTION_BLOCKED_MEAL
+            reason=ACTION_BLOCKED_MEAL,
+            nutrition_complete=nutrition_complete
         )
-
-    # ==========================================
-    # Build Central Nutrition State
-    #
-    # The action policy consumes the same
-    # centralized NutritionState used by the
-    # recommendation layer.
-    # ==========================================
-
-    nutrition_state = (
-        build_nutrition_state(
-            context
-        )
-    )
 
     # ==========================================
     # Nutrition Policy
@@ -121,13 +142,12 @@ def evaluate_meal_action(
     # completed today's nutrition requirement.
     # ==========================================
 
-    if not can_recommend_full_meal(
-        nutrition_state
-    ):
+    if nutrition_complete:
 
         return ActionDecision(
             allowed=False,
-            reason=ACTION_BLOCKED_NUTRITION
+            reason=ACTION_BLOCKED_NUTRITION,
+            nutrition_complete=True
         )
 
     # ==========================================
@@ -136,7 +156,8 @@ def evaluate_meal_action(
 
     return ActionDecision(
         allowed=True,
-        reason=ACTION_ALLOWED
+        reason=ACTION_ALLOWED,
+        nutrition_complete=False
     )
 
 

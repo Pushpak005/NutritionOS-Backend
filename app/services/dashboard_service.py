@@ -18,6 +18,7 @@ from app.services.recommendation_service import (
 # Core Service
 # ==========================================
 
+
 core_service = CoreService()
 
 
@@ -25,12 +26,13 @@ core_service = CoreService()
 # Dashboard
 # ==========================================
 
+
 def get_dashboard(user_id: int):
 
     # ==========================================
     # Core Nutrition Context
     #
-    # CoreService is now the authoritative
+    # CoreService is the authoritative
     # source for the user's current nutrition
     # state.
     # ==========================================
@@ -46,10 +48,8 @@ def get_dashboard(user_id: int):
     # gateway for deciding whether a normal
     # meal recommendation is currently allowed.
     #
-    # The dashboard now exposes this decision
-    # to the frontend instead of forcing the
-    # frontend to infer blocked states from
-    # null/empty recommendations.
+    # The dashboard exposes the policy decision
+    # instead of calculating policy rules itself.
     # ==========================================
 
     action_decision = evaluate_meal_action(
@@ -203,20 +203,6 @@ def get_dashboard(user_id: int):
         }
 
         # ==========================================
-        # Nutrition Completion State
-        # ==========================================
-
-        nutrition_complete = (
-
-            remaining["calories"] <= 100
-
-            and
-
-            remaining["protein"] <= 0
-
-        )
-
-        # ==========================================
         # Recommendation Context
         #
         # Existing recommendation engine still
@@ -274,7 +260,7 @@ def get_dashboard(user_id: int):
                 remaining,
 
             "nutrition_complete":
-                nutrition_complete,
+                action_decision.nutrition_complete,
 
             "action_state": {
 
