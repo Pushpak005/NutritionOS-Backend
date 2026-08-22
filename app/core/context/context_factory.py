@@ -195,6 +195,13 @@ class ContextFactory:
                 )
             ),
 
+            snack_logged=bool(
+                activity.get(
+                    "snack_logged",
+                    False
+                )
+            ),
+
             # --------------------------------------
             # Device
             # --------------------------------------
