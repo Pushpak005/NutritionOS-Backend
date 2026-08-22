@@ -4,6 +4,10 @@ from sqlalchemy import text
 from app.database import engine
 from app.utils.auth_dependency import get_current_user
 
+from app.core.context.context_factory import ContextFactory
+from app.core.policies.action_policy import evaluate_meal_action
+
+
 from app.services.recommendation_engine import (
     calculate_nutrition_score
 )
@@ -33,6 +37,26 @@ def get_recommendations(
 ):
 
     meal = meal.capitalize()
+
+    core_context = ContextFactory().build(
+        current_user["user_id"]
+    )
+
+    action_decision = evaluate_meal_action(
+        core_context
+    )
+
+    if not action_decision.allowed:
+
+        return {
+            "success": True,
+            "meal": meal,
+            "blocked": True,
+            "reason": action_decision.reason,
+            "total_recommendations": 0,
+            "recommendations": []
+        }
+
 
     if meal not in [
         "Breakfast",
